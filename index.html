@@ -15,7 +15,7 @@
     --dim: #8f8574;
     --gold: #c7a44a;
     --red: #b3372f;
-    --evo: #d98c2b;
+    --inv: #d98c2b;
     --rit: #7b6cc4;
     --old: #8a8578;
     --green: #6a8f4f;
@@ -42,6 +42,23 @@
     display: flex; align-items: baseline; gap: 8px;
   }
   h1 .sub { font: 400 12px sans-serif; color: var(--dim); letter-spacing: 0; }
+  .tabs { display: flex; gap: 6px; margin-top: 8px; }
+  .tab {
+    flex: 1; padding: 7px 0; border-radius: 9px;
+    background: var(--bg2); border: 1px solid var(--line);
+    color: var(--dim); font-size: 13px; cursor: pointer;
+  }
+  .tab.on { background: #3a2d14; border-color: var(--gold); color: var(--gold); font-weight: 600; }
+  .tab:disabled { opacity: .45; cursor: default; }
+  .banner {
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    margin-top: 8px; padding: 5px 6px 5px 10px; border-radius: 9px;
+    background: #221a0e; border: 1px solid #4a3a1c; color: #c9a96a; font-size: 12px;
+  }
+  .banner button {
+    background: none; border: none; color: inherit; font-size: 12px;
+    padding: 4px 6px; cursor: pointer; flex: 0 0 auto;
+  }
   .searchwrap { position: relative; margin-top: 8px; }
   .searchwrap svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 15px; height: 15px; fill: var(--dim); }
   #q {
@@ -94,15 +111,7 @@
   .rw summary::-webkit-details-marker { display: none; }
   .rw summary:active { background: var(--card-hover); }
   .rw-top { display: flex; align-items: center; gap: 8px; min-width: 0; }
-  .tier {
-    flex: 0 0 auto; width: 26px; height: 26px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 11px; font-weight: 700;
-  }
-  .t-hi { background: #3a1512; color: #e8655c; border: 1px solid var(--red); }
-  .t-mid { background: #332a12; color: var(--gold); border: 1px solid #6b5824; }
-  .t-lo { background: #20242a; color: #9aa5b1; border: 1px solid #39424d; }
-  .rw-name { font: 600 16px Georgia, serif; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .rw-name { flex: 1 1 auto; min-width: 0; font: 600 16px Georgia, serif; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .chev { color: var(--dim); font-size: 12px; transition: transform .2s; flex: 0 0 auto; }
   details[open] .chev { transform: rotate(90deg); }
   .rw-meta { grid-column: 1 / -1; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
@@ -113,7 +122,7 @@
     border: 1px solid transparent; font-weight: 600;
   }
   .rune:active { transform: scale(.94); }
-  .r-evo { background: #33230d; color: var(--evo); border-color: #5c3f16; }
+  .r-inv { background: #33230d; color: var(--inv); border-color: #5c3f16; }
   .r-rit { background: #221f33; color: var(--rit); border-color: #3d3760; }
   .r-old { background: #22201c; color: var(--old); border-color: #3a352c; }
   .rw-body { padding: 0 12px 12px; border-top: 1px solid var(--line); }
@@ -124,14 +133,58 @@
     font-size: 14px; color: var(--text); padding: 3px 0 3px 14px; position: relative;
   }
   .fx li::before { content: "◆"; position: absolute; left: 0; top: 3px; font-size: 8px; color: var(--gold); }
+  .warn { color: #d9a72b; font-size: 12px; cursor: help; }
   .uses { font-size: 13px; color: var(--dim); }
   .craftline {
     margin-top: 10px; font-size: 12px; color: var(--dim);
     background: var(--bg2); border-radius: 8px; padding: 8px 10px;
   }
   .craftline b { color: var(--text); font-weight: 600; }
+  .imgwrap { margin-top: 10px; }
+  .imgtoggle {
+    background: none; border: none; padding: 0; cursor: pointer;
+    color: #7a9ec2; font-size: 12px; text-decoration: underline dotted;
+  }
+  .imgbox { margin-top: 8px; }
+  .imgbox img { max-width: 100%; display: block; border-radius: 8px; border: 1px solid var(--line); }
   .tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 8px; }
   .tagmini { font-size: 10px; color: #9ec1e8; background: #14202e; border-radius: 4px; padding: 2px 6px; }
+  /* runes tab */
+  .runes-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 2px 0 4px; }
+  #invsummary { font-size: 12px; color: var(--dim); }
+  #invreset { background: none; border: 1px solid var(--line); color: var(--dim); font-size: 12px; padding: 3px 10px; border-radius: 8px; cursor: pointer; }
+  #invreset:active { opacity: .7; }
+  .runes-note { font-size: 11px; color: #6b6450; margin: 0 0 10px; }
+  .rgroup { font: 600 11px sans-serif; text-transform: uppercase; letter-spacing: 1px; color: var(--dim); margin: 14px 0 6px; }
+  .rgroup:first-child { margin-top: 4px; }
+  .rune-row {
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    padding: 10px 12px; margin-bottom: 8px;
+    display: grid; grid-template-columns: auto 1fr auto; gap: 2px 10px; align-items: start;
+  }
+  .rune-lg { font-size: 13px; padding: 4px 10px; border-radius: 7px; cursor: default; }
+  .rune-lg:active { transform: none; }
+  .rr-fx { font-size: 14px; color: var(--text); }
+  .rr-sub { font-size: 12px; color: var(--dim); }
+  .rr-used { margin-top: 6px; font-size: 12px; color: var(--dim); display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; }
+  .ub { background: none; border: none; padding: 0; font-size: 12px; color: #7a9ec2; text-decoration: underline dotted; cursor: pointer; }
+  .ub:active { opacity: .7; }
+  .stepper { display: flex; align-items: center; gap: 4px; }
+  .stepper button {
+    width: 30px; height: 30px; border-radius: 8px;
+    background: var(--bg2); border: 1px solid var(--line); color: var(--text);
+    font-size: 16px; line-height: 1; cursor: pointer;
+  }
+  .stepper button:active { background: var(--card-hover); }
+  .stepper button:disabled { opacity: .35; cursor: default; }
+  .stepper .cnt { min-width: 18px; text-align: center; font-size: 14px; font-weight: 600; color: var(--dim); }
+  .stepper .cnt.has { color: var(--gold); }
+  /* craftability */
+  .rw-craft-ok { font-size: 11px; font-weight: 700; color: #a4c77f; background: #1c2a17; border: 1px solid #3c5230; border-radius: 6px; padding: 1px 7px; }
+  .rw-craft-miss { font-size: 11px; font-weight: 600; color: #d9a72b; background: #2a2213; border: 1px solid #55431c; border-radius: 6px; padding: 1px 7px; }
+  .missline { margin-top: 8px; font-size: 12px; color: #d9a72b; }
+  .chip.craft.on { background: #1c2a17; border-color: var(--green); color: #a4c77f; }
+  .chip:disabled { opacity: .4; cursor: default; }
   #empty { text-align: center; color: var(--dim); padding: 48px 16px; display: none; }
   .howto { margin-top: 16px; }
   .howto summary {
@@ -141,10 +194,9 @@
   }
   .howto summary::-webkit-details-marker { display: none; }
   .howto div { padding: 12px 4px; font-size: 14px; color: var(--text); }
-  .howto ol { padding-left: 20px; }
+  .howto ol, .howto ul { padding-left: 20px; }
   .howto li { margin: 6px 0; }
   .howto h4 { color: var(--gold); margin: 12px 0 4px; font-size: 14px; }
-  .howto p { color: var(--dim); font-size: 13px; margin: 6px 0; }
   footer { text-align: center; color: #55503f; font-size: 11px; padding: 16px; }
   footer a { color: #7a6f57; }
 </style>
@@ -153,17 +205,25 @@
 
 <header>
   <h1>Rune Lexicon <span class="sub">D4 Season 15 · Horadric Cube runewords</span></h1>
+  <nav class="tabs" role="tablist" aria-label="Sections">
+    <button class="tab on" type="button" role="tab" aria-selected="true" id="tabrw">Runewords</button>
+    <button class="tab" type="button" role="tab" aria-selected="false" id="tabrunes">Runes</button>
+  </nav>
+  <div class="banner" id="caveat" role="note">
+    <span>Datamined values — partially unverified in-game; ancestral versions double them.</span>
+    <button id="caveatx" type="button" aria-label="Dismiss">✕</button>
+  </div>
   <div class="searchwrap">
     <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14z"/></svg>
-    <input id="q" type="search" placeholder="Search name, rune, effect…" autocomplete="off">
+    <input id="q" type="search" placeholder="Search name, rune, base, effect…" autocomplete="off">
     <button id="clearq" aria-label="Clear">✕</button>
   </div>
-  <div class="toolbar">
+  <div class="toolbar" id="toolbar">
     <span id="count"></span>
     <div class="seg" id="sortseg">
-      <button data-sort="tier" class="on">Tier</button>
+      <button data-sort="az" class="on">A–Z</button>
       <button data-sort="runes">Runes</button>
-      <button data-sort="az">A–Z</button>
+      <button data-sort="slot">Slot</button>
     </div>
   </div>
   <div class="chips-row" id="slotrow"></div>
@@ -171,139 +231,209 @@
 </header>
 
 <main>
-  <div id="list"></div>
-  <div id="empty">No runewords match. Try clearing filters.</div>
+  <section id="rwview">
+    <div id="list"></div>
+    <div id="empty">No runewords match. Try clearing filters.</div>
+  </section>
+
+  <section id="runesview" hidden>
+    <div class="runes-head">
+      <span id="invsummary"></span>
+      <button id="invreset" type="button">Reset</button>
+    </div>
+    <div class="runes-note">Socketed effects per game8 datamine — single source.</div>
+    <div id="runeslist"></div>
+    <div id="runesempty" hidden>No runes match.</div>
+  </section>
 
   <details class="howto">
-    <summary>⚙ How to craft & farm runes</summary>
-    <div>
-      <h4>Horadric Cube recipe</h4>
-      <ol>
-        <li>Get a <b>white (Common)</b> base item of the right type (chest, sword, staff…).</li>
-        <li>Open the <b>Horadric Cube</b> and place the base + the exact runes inside.</li>
-        <li>Press <b>Transmute</b> — button lights up when the combo is valid.</li>
-      </ol>
-      <h4>Notes</h4>
-      <p>• Runes can go in <b>any order</b>; no sockets needed on the base.<br>
-         • Blue items can be stripped to white via the Cube's <b>Remove Affixes</b>.<br>
-         • The result is a Unique — you can socket, enchant, and masterwork it.<br>
-         • Salvaging the runeword usually returns the runes.<br>
-         • This bypasses the normal 2-rune limit — recipes use 2–5 runes.</p>
-      <h4>Farming</h4>
-      <p>• <b>The Countess</b> — dedicated rune boss, ~5 runes per kill.<br>
-         • <b>The Pit</b> — higher tiers = better rune quality.<br>
-         • <b>Seasonal quest</b> — early rewards include Tal + Eth (free Stealth).<br>
-         • Helltides / Nightmare Dungeons elites; Purveyor gambling; trading; Rebirth transfers.</p>
-      <h4>New runes this season</h4>
-      <p>Evocation: <span style="color:var(--evo)">Ber, Ist, Ith, Lo, Ral, Sol, Tir</span> ·
-         Ritual: <span style="color:var(--rit)">Amn, Eth, Mal, Ort, Tal</span> ·
-         Older: Jah, Ohm, Vex, Thul. <b>Ber &amp; Jah are the rare chase runes.</b></p>
-    </div>
+    <summary>⚙ Craft &amp; farm</summary>
+    <div id="howtobody"></div>
   </details>
 
   <footer>
-    Effects per data-mined list (aoeah.com) · community rankings — verify in-game.<br>
-    Tap a rune badge to find every runeword using it.
+    <div id="dataline"></div>
+    <div>Tap a rune badge to find every runeword using it.</div>
   </footer>
 </main>
 
-<script id="rw-data" type="application/json">
-{
+<script id="rw-data" type="application/json">{
+  "asof": "2026-09-18",
+  "patch": "3.2.1",
+  "tier": "normal",
   "runewords": [
-    {"name":"Enigma","tier":1,"slot":"Chest","group":"Chest","runes":[{"n":"Jah","c":"old"},{"n":"Ith","c":"evo"},{"n":"Ber","c":"evo"}],
-     "effects":["+2 to All Skills","+45% Movement Speed","12% Damage Reduction","+40% Maximum Life","+[91–1,225] Armor","Your Evade is now Sorcerer's Teleport, costs 33 Primary Resource"],
-     "uses":"Universal — every class. Evade-teleport mobility; pair with evade cooldown resets for permanent teleport rotation. Roll away MS/armor if capped.",
-     "tags":["endgame","mobility","universal"]},
-    {"name":"Grief","tier":2,"slot":"Sword (Phase Blade)","group":"Weapon","runes":[{"n":"Eth","c":"rit"},{"n":"Tir","c":"evo"},{"n":"Lo","c":"evo"},{"n":"Mal","c":"rit"},{"n":"Ral","c":"evo"}],
-     "effects":["+[750–1,000]% Weapon Damage","+20% Deadly Strike Chance","+[30–40]% Attack Speed","+100% Damage to Demons","+2 Primary Resource on Kill","Direct damage inflicts 40% bonus Poisoning damage over 5s"],
-     "uses":"Overtuned melee weapon. Paladin-style + shield builds, Rampage Barbarian speed farm, poison Rogue, fast attackers.",
-     "tags":["endgame","melee","poison"]},
-    {"name":"Insight","tier":3,"slot":"Staff","group":"Weapon","runes":[{"n":"Ral","c":"evo"},{"n":"Tir","c":"evo"},{"n":"Tal","c":"rit"},{"n":"Sol","c":"evo"}],
-     "effects":["+35% Attack Speed","+[16–46]% Critical Strike Chance","+[2–345] Weapon Damage","+[2–360] All Stats","×200% Critical Strike Damage Multiplier"],
-     "uses":"Top-tier Sorcerer crit weapon — crit ceiling ~92% with GA/masterwork. Combos with crit-splinter multipliers.",
-     "tags":["endgame","crit","sorc"]},
-    {"name":"Spirit","tier":4,"slot":"Sword","group":"Weapon","runes":[{"n":"Tal","c":"rit"},{"n":"Thul","c":"old"},{"n":"Ort","c":"rit"},{"n":"Amn","c":"rit"}],
-     "effects":["+5 to All Skills","+[25–35]% Attack Speed","×50% All Damage Multiplier","+[20–56]% Maximum Resource","50% Impairment Reduction"],
-     "uses":"Any caster or resource-hungry build; resource can exceed 112% with rolls. Cheaper runes than most top weapons.",
-     "tags":["endgame","universal","caster"]},
-    {"name":"Call to Arms","tier":5,"slot":"Sword","group":"Weapon","runes":[{"n":"Amn","c":"rit"},{"n":"Ral","c":"evo"},{"n":"Mal","c":"rit"},{"n":"Ist","c":"evo"},{"n":"Ohm","c":"old"}],
-     "effects":["+[200–250]% Weapon Damage","+1 to All Skills","×40% All Damage Multiplier","+5 to Shout Skills","+40% Attack Speed","While Shout-active: +5 All Skills, +15% Max Life, +15%[x] Max Primary Resource"],
-     "uses":"Barbarian Shout builds (effectively +10 Shout ranks). Off-hand pairing with Magnum Opus; flat AS for others.",
+    {"name":"Ancient's Pledge","groups":["Offhand"],"bases":["Focus","Totem","Shield"],"baseCount":3,
+     "runes":[{"n":"Ral"},{"n":"Ort"},{"n":"Tal"}],
+     "effects":["×35% All Damage Multiplier","+35% Fire Resistance","+35% Lightning Resistance","+35% Cold Resistance","+35% Poison Resistance","35% Damage Reduction"],
+     "uses":"One slot solves the entire resistance sheet — and adds a real damage multiplier plus DR. Strong for casters, shield users, hardcore.",
+     "tags":["defense","caster","endgame"]},
+    {"name":"Call to Arms","groups":["1H","Offhand"],"bases":["1H weapons & off-hands (9 types)"],"baseCount":9,
+     "runes":[{"n":"Amn"},{"n":"Ral"},{"n":"Mal"},{"n":"Ohm"},{"n":"Ist"}],
+     "effects":["+[200–250] Weapon Damage","+1 to All Skills","×40% All Damage Multiplier","+5 to Shout Skills","+40% Attack Speed","Power: while affected by a Shout — +5 ranks to all Skills, +15% Maximum Life, +15%[x] Maximum Primary Resource"],
+     "uses":"Barbarian Shout builds (effectively +10 Shout ranks). Off-hand pairing for buff uptime; flat attack speed for anyone.",
      "tags":["endgame","barb"]},
-    {"name":"Stealth","tier":6,"slot":"Chest","group":"Chest","runes":[{"n":"Tal","c":"rit"},{"n":"Eth","c":"rit"}],
-     "effects":["+[1–2,200] Maximum Life","+25% Attack Speed","25% Impairment Reduction","15% Resource Generation","+25% Movement Speed","15% Damage Reduction"],
-     "uses":"The leveling chest — free Tal + Eth and a base from the seasonal quest. Use 1→70, then swap to Enigma.",
-     "tags":["leveling","universal","defense"]},
-    {"name":"Infinity","tier":7,"slot":"Staff","group":"Weapon","runes":[{"n":"Ber","c":"evo","x":2},{"n":"Mal","c":"rit"},{"n":"Ist","c":"evo"}],
-     "effects":["Lucky Hit: up to 40% Crushing Blow","+35% Movement Speed","+[2–4,400] Maximum Life","+[100–200]% Gold Drop Rate","50% chance: Rank 20 Chain Lightning on kill","Gain Rank 22 Cyclone Armor passive","Close enemies Vulnerable, take +125%[x] damage"],
-     "uses":"Speed/gold farming, melee-range casters. Crushing Blow shines vs Pit boss HP pools.",
-     "tags":["farming","endgame","caster"]},
-    {"name":"Ancient's Pledge","tier":8,"slot":"Focus / Totem / Shield","group":"Offhand","runes":[{"n":"Ral","c":"evo"},{"n":"Ort","c":"rit"},{"n":"Tal","c":"rit"}],
-     "effects":["+50% Enhanced Defense","+[35–48]% Fire / Lightning / Cold / Poison Resistance","10% Damage Taken recovered as Primary Resource","+2 to All Skills (Focus/Totem variants)"],
-     "uses":"Solves the whole resistance sheet in one slot — frees jewelry for damage. Cheap early craft for casters and shield builds.",
-     "tags":["defense","caster","leveling"]},
-    {"name":"Rain","tier":9,"slot":"Chest","group":"Chest","runes":[{"n":"Ort","c":"rit"},{"n":"Mal","c":"rit"},{"n":"Ith","c":"evo"}],
-     "effects":["+[25–40]% Maximum Resource","+5 to Nature Magic Skills","10% Damage Reduction","+35% Lightning Resistance","10% Dodge Chance","Lucky Hit: up to [15–30]% Rank 15 Tornado","50% chance: Rank 15 Cyclone Armor on Dodge"],
-     "uses":"Druid Nature Magic — Tornado/Storm setups; dodge procs pull packs together.",
-     "tags":["druid","endgame","caster"]},
-    {"name":"Phoenix","tier":10,"slot":"Sword","group":"Weapon","runes":[{"n":"Vex","c":"old","x":2},{"n":"Lo","c":"evo"},{"n":"Jah","c":"old"}],
-     "effects":["+[1–632] Life on Kill","Lucky Hit: up to 40% +[1,500–2,400] Fire Damage","+20% Deadly Strike Chance","×50% All Damage Multiplier","On level-up: Rank 40 Ring of Fire","Lucky Hit: [15–30]% Rank 22 Fire Spear"],
-     "uses":"Fire builds, dual-wield Barbarian deadly-strike stacking (skip crit via Hellfire Splinter).",
-     "tags":["leveling","melee","fire"]},
-    {"name":"King's Grace","tier":11,"slot":"Mace","group":"Weapon","runes":[{"n":"Amn","c":"rit"},{"n":"Ral","c":"evo"},{"n":"Thul","c":"old"}],
-     "effects":["+100% Damage to Demons","+100% Damage to Undead","+[1–948] Life on Hit","+50% Lucky Hit Chance","×75% All Damage Multiplier"],
-     "uses":"Generic damage stick; +50% LH chance can revive lucky-hit builds. ×75 can hit ~×150 with masterwork.",
-     "tags":["endgame","melee"]},
-    {"name":"Pattern","tier":12,"slot":"Dagger","group":"Weapon","runes":[{"n":"Tal","c":"rit"},{"n":"Ort","c":"rit"},{"n":"Thul","c":"old"}],
-     "effects":["30% Block Chance","×50% All Damage Multiplier","+10% All Stats","Lucky Hit: up to 40% +[400–2,700] Poison damage over 10s","+[10–20]% Critical Strike Chance","+[203–400] Resistance to All Elements"],
-     "uses":"Defensive Rogue / poison off-hand; crit roll up to 40% with GA+MW solves crit in one slot.",
-     "tags":["rogue","defense","crit"]},
-    {"name":"Holy Thunder","tier":13,"slot":"Mace","group":"Weapon","runes":[{"n":"Eth","c":"rit"},{"n":"Ral","c":"evo"},{"n":"Ort","c":"rit"},{"n":"Tal","c":"rit"}],
-     "effects":["+35% Lightning Resistance","×50% All Damage Multiplier","+20% Lucky Hit Chance","You emit Crackling Energy","Crackling-Energy-hit enemies take [20–35]%[x] more Holy/Fire/Lightning/Physical damage from you"],
-     "uses":"Multi-element amplifier; ~×100 combined. Stats may be incomplete in datamine.",
-     "tags":["endgame","caster"]},
-    {"name":"Strength","tier":14,"slot":"Sword","group":"Weapon","runes":[{"n":"Amn","c":"rit"},{"n":"Tir","c":"evo"}],
-     "effects":["Lucky Hit: up to 25% Crushing Blow","×50% All Damage Multiplier","+10% Strength","+[1–2,200] Maximum Life","+[1–948] Life on Hit","+2 Primary Resource on Kill"],
-     "uses":"Solid filler melee weapon; Crushing Blow scales vs tanky bosses.",
-     "tags":["melee","leveling"]},
-    {"name":"Zephyr","tier":15,"slot":"Bow / Crossbow","group":"Ranged","runes":[{"n":"Ort","c":"rit"},{"n":"Eth","c":"rit"}],
-     "effects":["+25% Movement Speed","+[30–40]% Attack Speed","+[150–180]% Enhanced Damage","Adds 1–100 Lightning Damage","+66 Attack Rating","10% Better Magic Item Chance","100% chance: Rank 3 Twister on strike"],
-     "uses":"Rogue leveling bow — craft immediately after first Ort+Eth; natural pair to Stealth.",
-     "tags":["leveling","rogue","ranged"]},
-    {"name":"Edge","tier":16,"slot":"Staff","group":"Weapon","runes":[{"n":"Tir","c":"evo"},{"n":"Tal","c":"rit"},{"n":"Amn","c":"rit"}],
-     "effects":["+35% Attack Speed","+200% Damage to Demons","Lucky Hit: up to 40% +[800–5,400] Poison damage over 10s","+[2–360] All Stats","+[50–5,917] Thorns","+200% Damage to Undead","15% extra item chance from Purveyor of Curiosities"],
-     "uses":"Gambling utility — equip while dumping Obols. Also thorns Barb/Druid.",
+    {"name":"Edge","groups":["2H","Ranged"],"bases":["All 2H weapons (10 types)"],"baseCount":10,
+     "runes":[{"n":"Tir"},{"n":"Tal"},{"n":"Amn"}],
+     "img":"https://d4guides.gg/assets/img/items/runewords/edge-2hbow.webp",
+     "effects":["Inherent +7.5% extra item chance from Purveyor of Curiosities","+17.5% Attack Speed","+?% Damage to Demons|?","Lucky Hit: up to 40% chance +[1,100–1,600] Poisoning damage over 10s","[150–180] All Stats","+[50–5,917] Thorns|?","+?% Damage to Undead|?"],
+     "uses":"Gambling utility — equip while dumping Obols. Also thorns builds.",
      "tags":["utility","farming"]},
-    {"name":"Prudence","tier":17,"slot":"Chest","group":"Chest","runes":[{"n":"Mal","c":"rit"},{"n":"Tir","c":"evo"}],
-     "effects":["Indestructible","+500 Resistance to All Elements","10% Damage Reduction","25% Impairment Reduction","+[20–35]% Total Armor","+2 Primary Resource on Kill","10% Dodge Chance"],
-     "uses":"Pure defense — hardcore, tanks. No offense, so out of the endgame meta.",
-     "tags":["defense","leveling"]},
-    {"name":"Lore","tier":18,"slot":"Helm","group":"Helm","runes":[{"n":"Ort","c":"rit"},{"n":"Sol","c":"evo"}],
-     "effects":["+2 to All Skills","+25 Maximum Resource","10% Damage Reduction","+[1–2,800] Lightning Resistance","+2 Primary Resource on Kill","+[183–2,500] Armor"],
-     "uses":"Stopgap +2 skills helm until Leoric's Crown drops.",
+    {"name":"Enigma","groups":["Chest"],"bases":["Chest Armor"],"baseCount":1,
+     "runes":[{"n":"Jah"},{"n":"Ith"},{"n":"Ber"}],
+     "effects":["+2 to All Skills","+45% Movement Speed","12% Damage Reduction","+40% Maximum Life","+[981–1,225] Armor","Power: your Evade is now Sorcerer's Teleport, costs 33 Primary Resource"],
+     "uses":"Universal chase item. Evade→Teleport on every class; pair with evade-cooldown resets for permanent teleport rotation.",
+     "tags":["endgame","mobility","universal"]},
+    {"name":"Grief","groups":["1H"],"bases":["Berserker Axe","Phase Blade"],"baseCount":2,
+     "runes":[{"n":"Eth"},{"n":"Tir"},{"n":"Lo"},{"n":"Mal"},{"n":"Ral"}],
+     "img":"https://d4guides.gg/assets/img/items/runewords/grief-1hsword.webp",
+     "effects":["Indestructible","+[750–1,000] Weapon Damage","+20% Deadly Strike Chance","+[30–40]% Attack Speed","+?% Damage to Demons|?","+2 Resource on Kill","Power: direct damage inflicts 40% bonus Poisoning damage over 5s"],
+     "uses":"Flat weapon damage can double a one-hander's swing. Shield-pairing melee, Rampage Barb speed farm, poison Rogue.",
+     "tags":["endgame","melee","poison"]},
+    {"name":"Holy Thunder","groups":["1H"],"bases":["Flail","Mace"],"baseCount":2,
+     "runes":[{"n":"Eth"},{"n":"Ral"},{"n":"Ort"},{"n":"Tal"}],
+     "effects":["+35% Lightning Resistance","×50% All Damage Multiplier","+20% Lucky Hit Chance","Power: you emit Crackling Energy; enemies damaged by it take [20–35]%[x] increased Holy/Fire/Lightning/Physical damage from you for 3s"],
+     "uses":"Multi-element amplifier — mult + elemental debuff ≈ ×100 combined.",
+     "tags":["endgame","caster"]},
+    {"name":"Infinity","groups":["2H","Ranged"],"bases":["All 2H weapons (10 types)"],"baseCount":10,
+     "runes":[{"n":"Ber"},{"n":"Mal"},{"n":"Ber"},{"n":"Ist"}],
+     "effects":["Lucky Hit: up to 20% chance to deliver a Crushing Blow","+17.5% Movement Speed","+[1,831–2,200] Maximum Life","[50–100]% Gold Drop Rate","Power: 50% chance Rank 10 Chain Lightning on kill","Power: Rank 11 Cyclone Armor passive","Power: close enemies are Vulnerable, take +62.5%[x] damage from you"],
+     "uses":"Speed/gold farming and melee-range casters. Crushing Blow scales against Pit boss HP pools.",
+     "tags":["farming","endgame","caster"]},
+    {"name":"Insight","groups":["2H","Ranged"],"bases":["Bow","Crossbow","Glaive","Polearm","Quarterstaff","Staff","2H Scythe"],"baseCount":7,
+     "runes":[{"n":"Ral"},{"n":"Tir"},{"n":"Tal"},{"n":"Sol"}],
+     "img":"https://d4guides.gg/assets/img/items/runewords/insight-scythe2h.webp",
+     "effects":["+17.5% Attack Speed","+[8–23]% Critical Strike Chance","+[104–173] Weapon Damage","[150–180] All Stats","×100% Critical Strike Damage Multiplier"],
+     "uses":"Crit stick — crit chance + ×100 crit-damage mult can solo-solve crit and combos with crit-splinter tradeoffs. Not staff-only: bows, glaives, polearms etc.",
+     "tags":["endgame","crit"]},
+    {"name":"King's Grace","groups":["1H"],"bases":["Flail","Mace","Sword"],"baseCount":3,
+     "runes":[{"n":"Amn"},{"n":"Ral"},{"n":"Thul"}],
+     "effects":["+100% Damage to Demons","+100% Damage to Undead","+[789–948] Life on Hit","+50% Lucky Hit Chance","×75% All Damage Multiplier"],
+     "uses":"+50% Lucky Hit can carry lucky-hit builds; ×75 mult approaches ~×150 with masterwork.",
+     "tags":["endgame","melee"]},
+    {"name":"Leaf","groups":["2H"],"bases":["Staff (Sorcerer/Druid)"],"baseCount":1,
+     "runes":[{"n":"Tir"},{"n":"Ral"}],
+     "img":"https://d4guides.gg/assets/img/items/runewords/leaf.webp",
+     "effects":["+2 Resource on Kill","+17.5% Cold Resistance","10% Resource Generation","Possibly bugged: missing its D2 fire-skills identity (community report)|?"],
+     "uses":"Resource-focused early leveling staff, currently weakest of the set.",
+     "tags":["leveling","caster"]},
+    {"name":"Lore","groups":["Helm"],"bases":["Helm"],"baseCount":1,
+     "runes":[{"n":"Ort"},{"n":"Sol"}],
+     "img":"https://d4guides.gg/assets/img/items/runewords/lore.webp",
+     "effects":["+2 to All Skills","+25 Maximum Resource","10% Damage Reduction","+[2,275–2,800] Lightning Resistance","+2 Resource on Kill","+[1,963–2,500] Armor"],
+     "uses":"Stopgap +2-skills helm until Leoric's Crown.",
      "tags":["leveling","universal"]},
-    {"name":"Leaf","tier":19,"slot":"Staff","group":"Weapon","runes":[{"n":"Tir","c":"evo"},{"n":"Ral","c":"evo"}],
-     "effects":["+4 Primary Resource on Kill","+35% Cold Resistance","+20% Resource Generation"],
-     "uses":"Weakest of the set — likely missing datamine stats. Early resource leveling staff.",
-     "tags":["leveling","caster"]}
-  ]
+    {"name":"Pattern","groups":["1H"],"bases":["Dagger"],"baseCount":1,
+     "runes":[{"n":"Tal"},{"n":"Ort"},{"n":"Thul"}],
+     "effects":["Inherent 30% Block Chance","×50% All Damage Multiplier","+10% All Stats","Lucky Hit: up to 40% chance +[1,100–1,600] Poisoning damage over 10s","+[10–20]% Critical Strike Chance","+[325–400] Resistance to All Elements"],
+     "uses":"Defensive Rogue / poison off-hand; crit roll can solve crit in one slot.",
+     "tags":["rogue","defense","crit"]},
+    {"name":"Phoenix","groups":["1H","Offhand"],"bases":["1H weapons & off-hands (10 types)"],"baseCount":10,
+     "runes":[{"n":"Vex"},{"n":"Vex"},{"n":"Jah"},{"n":"Lo"}],
+     "effects":["+[526–632] Life on Kill","Lucky Hit: up to 40% chance +1,500 Fire Damage","+20% Deadly Strike Chance","×50% All Damage Multiplier","Power: Rank 40 Ring of Fire on level-up","Lucky Hit: up to [15–30]% chance Rank 22 Fire Spear","Shield variant: +35% Fire Resistance, 10% Damage Reduction instead of the multiplier|?"],
+     "uses":"Fire builds; dual-wield deadly-strike stacking to skip crit via splinters.",
+     "tags":["leveling","melee","fire"]},
+    {"name":"Prudence","groups":["Chest"],"bases":["Chest Armor"],"baseCount":1,
+     "runes":[{"n":"Mal"},{"n":"Tir"}],
+     "img":"https://d4guides.gg/assets/img/items/runewords/prudence.webp",
+     "effects":["Indestructible","+500 Resistance to All Elements","10% Damage Reduction","25% Impairment Reduction","+[20–35]% Total Armor","+2 Resource on Kill","10% Dodge Chance"],
+     "uses":"Pure defense — hardcore, tanks; no offense.",
+     "tags":["defense","leveling"]},
+    {"name":"Rain","groups":["Chest"],"bases":["Chest Armor"],"baseCount":1,
+     "runes":[{"n":"Ort"},{"n":"Mal"},{"n":"Ith"}],
+     "effects":["+[25–40] Maximum Resource|?","+5 to Nature Magic Skills","10% Damage Reduction","+35% Lightning Resistance","10% Dodge Chance","Power: Lucky Hit [15–30]% chance Rank 15 Tornado","Power: 50% chance Rank 15 Cyclone Armor on Dodge"],
+     "uses":"Druid Nature Magic — Tornado/Storm setups; dodge procs tighten packs.",
+     "tags":["druid","endgame","caster"]},
+    {"name":"Spirit","groups":["1H","Offhand"],"bases":["1H Axe","Dagger","Flail","Focus","Mace","Totem","Scythe","Sword","Shield","Wand"],"baseCount":10,
+     "runes":[{"n":"Tal"},{"n":"Thul"},{"n":"Ort"},{"n":"Amn"}],
+     "img":"https://d4guides.gg/assets/img/items/runewords/spirit-1hsword.webp",
+     "effects":["+5 to All Skills","+[25–35]% Attack Speed","×50% All Damage Multiplier","+[20–56]% Maximum Resource","50% Impairment Reduction","Shield variant swaps the multiplier for Maximum Life|?"],
+     "uses":"Usable from level 25, ten base types — near-universal damage weapon for casters and resource builds.",
+     "tags":["endgame","universal","caster"]},
+    {"name":"Stealth","groups":["Chest"],"bases":["Chest Armor"],"baseCount":1,
+     "runes":[{"n":"Tal"},{"n":"Eth"}],
+     "effects":["+[1,831–2,200] Maximum Life","+25% Attack Speed","25% Impairment Reduction","15% Resource Generation","+25% Movement Speed","15% Damage Reduction"],
+     "uses":"Best leveling craft — reportedly free base + Tal + Eth from the seasonal quest (unconfirmed). Does NOT grant Teleport (in-game tested).",
+     "tags":["leveling","universal","defense"]},
+    {"name":"Strength","groups":["1H","Offhand"],"bases":["1H weapons & off-hands (9 types)"],"baseCount":9,
+     "runes":[{"n":"Amn"},{"n":"Tir"}],
+     "effects":["Lucky Hit: up to 25% chance to deliver a Crushing Blow","×50% All Damage Multiplier","+10% Strength","+[1,831–2,200] Maximum Life","+[789–948] Life on Hit","+2 Resource on Kill"],
+     "uses":"Cheap filler melee weapon; Crushing Blow shines vs tanky bosses.",
+     "tags":["melee","leveling"]},
+    {"name":"Zephyr","groups":["Ranged"],"bases":["Bow","Crossbow (Rogue)"],"baseCount":2,
+     "runes":[{"n":"Ort"},{"n":"Eth"}],
+     "effects":["12.5% Dodge Chance","+12.5% Attack Speed","+12.5% Movement Speed","×62.5% All Damage Multiplier","Lucky Hit: up to 40% chance +1,500 Lightning Damage","Power: unleash a Dust Devil whenever you Dodge"],
+     "uses":"Rogue leveling bow — craft on first Ort + Eth.",
+     "tags":["leveling","rogue","ranged"]}
+  ],
+  "runes": [
+    {"n":"Amn","cat":"rit","fx":"Ritual: deal Thorns damage","rare":"disputed (Unique per game8, common per d4guides)","drops":"Waking Nightmares · Countess · elites"},
+    {"n":"Ber","cat":"inv","fx":"Lucky Hit: next 5 Skills have up to 10% chance to deliver a Crushing Blow","rare":"disputed · chase-tier","drops":"Waking Nightmares · Countess · jeweler 3:1 ladder from Tir/Lo"},
+    {"n":"Eth","cat":"rit","fx":"Ritual: avoid spending Resource for 5s","rare":"disputed (Unique/common)","drops":"Waking Nightmares · Countess · elites"},
+    {"n":"Ist","cat":"inv","fx":"Invocation: invoke Prime Evil Power","rare":"disputed (Unique/common)","drops":"Waking Nightmares · Countess · elites"},
+    {"n":"Ith","cat":"inv","fx":"+5 Weapon Damage for 5s, stacks to +125","rare":"disputed (Unique/common)","drops":"Waking Nightmares · Countess · jeweler ladder"},
+    {"n":"Jah","cat":"old","fx":null,"rare":"Legendary (pre-S15 rune)","drops":"existing rune pool · trade"},
+    {"n":"Lo","cat":"inv","fx":"25% Deadly Strike chance for 10s","rare":"disputed · chase-tier","drops":"Waking Nightmares · Countess · elites"},
+    {"n":"Mal","cat":"rit","fx":"Ritual: invoke Prime Evil Power","rare":"disputed (Unique/common)","drops":"Waking Nightmares · Countess · elites"},
+    {"n":"Ohm","cat":"old","fx":null,"rare":"Legendary (pre-S15 rune)","drops":"existing rune pool · trade"},
+    {"n":"Ort","cat":"rit","fx":"Ritual: deal non-Physical direct damage","rare":"disputed (Unique/common)","drops":"Waking Nightmares · Countess · elites"},
+    {"n":"Ral","cat":"inv","fx":"250% Gold Find for 7s","rare":"disputed (Unique/common)","drops":"Waking Nightmares · Countess · elites"},
+    {"n":"Sol","cat":"inv","fx":"15% Damage Reduction for 6s","rare":"disputed (Unique/common)","drops":"Waking Nightmares · Countess · elites"},
+    {"n":"Tal","cat":"rit","fx":"Ritual: deal damage over time","rare":"disputed (Unique/common)","drops":"Waking Nightmares · Countess · elites · seasonal quest (reported)"},
+    {"n":"Thul","cat":"old","fx":null,"rare":"Legendary (pre-S15 rune)","drops":"existing rune pool · trade"},
+    {"n":"Tir","cat":"inv","fx":"+2 Resource on Kill for 8s, stacks to +8","rare":"disputed (Unique/common)","drops":"Waking Nightmares · Countess · elites · seasonal quest (reported)"},
+    {"n":"Vex","cat":"old","fx":null,"rare":"Legendary (pre-S15 rune)","drops":"existing rune pool · trade"}
+  ],
+  "howto": {
+    "craft": [
+      "Get a white (Common) base item of a valid type — the base's Item Power carries over to the result, so use high-IP bases for expensive recipes.",
+      "Open the Horadric Cube (requires the Lord of Hatred campaign) and place the base + runes in the listed order (order is reported to matter — disputed).",
+      "Press Transmute; unknown valid combos preview as ??? before crafting."
+    ],
+    "notes": [
+      "Result is a Unique: enchanting OK (single source), tempering NOT possible, masterworking unconfirmed.",
+      "Every recipe exists as a normal and an ancestral version — ancestral ≈ 2× values. Stats on this page are normal-tier.",
+      "Salvaging may return the runes (single source, unconfirmed).",
+      "Seasonal quest reportedly grants a chest base + Tal + Eth early (unconfirmed).",
+      "Class access is governed by the base item — Spiritborn is excluded from most 1H recipes but can use armor and 2H recipes.",
+      "Datamined from patch 3.2.1 client data; several values not yet verified in-game. Blizzard never documented the system — found by players (Dioxide first)."
+    ],
+    "farm": [
+      "Waking Nightmare encounters (red portals / Chronicle of Nightmares) — primary rune source.",
+      "The Countess — dedicated rune dropper (~5/kill per one source).",
+      "Jeweler 3:1 rune ladder — Ber/Ith reportedly reachable from Tir/Lo (unconfirmed).",
+      "Helltide / Nightmare Dungeon elites · Purveyor gambling · trading · Rebirth transfers."
+    ]
+  }
 }
 </script>
 <script>
 const DATA = JSON.parse(document.getElementById('rw-data').textContent);
-const TAGS = [
+const RUNE_CAT = Object.fromEntries(DATA.runes.map(r => [r.n, r.cat]));
+
+// chips are derived from the data: only tags present on ≥1 runeword, plus any unmapped tags verbatim
+const TAG_LABELS = [
   ["leveling","Leveling"],["endgame","Endgame"],["farming","Farming"],
   ["defense","Defense"],["mobility","Mobility"],["utility","Utility"],
   ["melee","Melee"],["caster","Caster"],["crit","Crit"],
   ["universal","Any class"],["barb","Barb"],["sorc","Sorc"],["druid","Druid"],["rogue","Rogue"],
   ["poison","Poison"],["fire","Fire"],["ranged","Ranged"]
 ];
-const SLOTS = ["All","Weapon","Ranged","Chest","Helm","Offhand"];
+const usedTags = new Set(DATA.runewords.flatMap(rw => rw.tags));
+const TAGS = TAG_LABELS.filter(([id]) => usedTags.has(id));
+[...usedTags].filter(t => !TAG_LABELS.some(([id]) => id === t)).sort().forEach(t => TAGS.push([t, t]));
+const TAG_MAP = Object.fromEntries(TAGS);
+const SLOTS = ["All","Chest","Helm","1H","2H","Ranged","Offhand"];
+const SLOT_ORDER = { Chest:0, Helm:1, "1H":2, "2H":3, Ranged:4, Offhand:5 };
 
-const state = { q:"", slot:"All", tags:new Set(), sort:"tier" };
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+const state = { q:"", slot:"All", tags:new Set(), sort:"az", craftable:false, tab:"rw" };
 const $q = document.getElementById('q'), $list = document.getElementById('list'),
       $count = document.getElementById('count'), $empty = document.getElementById('empty'),
       $clear = document.getElementById('clearq');
+
+// caveat banner — dismissal is per-load, not persisted
+document.getElementById('caveatx').onclick = () => document.getElementById('caveat').remove();
 
 // build chip rows
 const slotrow = document.getElementById('slotrow'), tagrow = document.getElementById('tagrow');
@@ -338,57 +468,231 @@ document.getElementById('sortseg').addEventListener('click', e => {
 $q.addEventListener('input', () => {
   state.q = $q.value.trim().toLowerCase();
   $clear.style.display = state.q ? 'block' : 'none';
-  render();
+  state.tab === 'runes' ? renderRunes() : render();
 });
 $clear.onclick = () => { $q.value = ''; $q.dispatchEvent(new Event('input')); $q.focus(); };
 
-function runeLabel(r) { return r.n + (r.x > 1 ? '×' + r.x : ''); }
+// --- inventory (localStorage, try/catch — iOS private mode throws) ---
+const INV_KEY = 'rw-inv-v2';
+function loadInv() {
+  let raw = null, o = null;
+  try { raw = localStorage.getItem(INV_KEY); } catch { return {}; }
+  try { o = JSON.parse(raw); } catch { o = null; }
+  if (!o || typeof o !== 'object' || Array.isArray(o)) return {};
+  const out = {};
+  for (const r of DATA.runes) {
+    const v = Math.floor(Number(o[r.n]));
+    if (Number.isFinite(v) && v > 0) out[r.n] = v;
+  }
+  return out;
+}
+let INV = loadInv();
+const invTotal = () => Object.values(INV).reduce((s, v) => s + v, 0);
+function saveInv() { try { localStorage.setItem(INV_KEY, JSON.stringify(INV)); } catch {} }
+
+// --- derived helpers ---
+function needMap(runes) {
+  const need = {};
+  runes.forEach(r => { need[r.n] = (need[r.n] || 0) + (r.x || 1); });
+  return need;
+}
+function missingFor(rw) {
+  return Object.entries(needMap(rw.runes))
+    .filter(([n, k]) => (INV[n] || 0) < k)
+    .map(([n, k]) => [n, k - (INV[n] || 0)]);
+}
+const craftableCount = () => DATA.runewords.filter(rw => !missingFor(rw).length).length;
+
+const USED_BY = {};
+DATA.runewords.forEach(rw => {
+  for (const [n, x] of Object.entries(needMap(rw.runes))) (USED_BY[n] = USED_BY[n] || []).push({ name: rw.name, x });
+});
+
+// --- craftable filter chip (dynamic; not a runeword tag) ---
+const craftChip = document.createElement('button');
+craftChip.className = 'chip craft';
+craftChip.textContent = '✓ Craftable';
+craftChip.onclick = () => {
+  if (craftChip.disabled) return;
+  state.craftable = !state.craftable;
+  craftChip.classList.toggle('on', state.craftable);
+  render();
+};
+tagrow.insertBefore(craftChip, tagrow.firstChild);
+function updateCraftChip() {
+  const none = invTotal() === 0;
+  craftChip.disabled = none;
+  craftChip.title = none ? 'Track runes on the Runes tab to enable' : 'Show only runewords craftable from your inventory';
+  if (none && state.craftable) { state.craftable = false; craftChip.classList.remove('on'); }
+}
+
+// --- tabs ---
+const tabBtns = { rw: document.getElementById('tabrw'), runes: document.getElementById('tabrunes') };
+const $toolbar = document.getElementById('toolbar'),
+      $rwview = document.getElementById('rwview'), $runesview = document.getElementById('runesview'),
+      $runeslist = document.getElementById('runeslist'), $runesempty = document.getElementById('runesempty'),
+      $invsummary = document.getElementById('invsummary');
+
+function setTab(t) {
+  state.tab = t;
+  tabBtns.rw.classList.toggle('on', t === 'rw');
+  tabBtns.rw.setAttribute('aria-selected', String(t === 'rw'));
+  tabBtns.runes.classList.toggle('on', t === 'runes');
+  tabBtns.runes.setAttribute('aria-selected', String(t === 'runes'));
+  const rw = t === 'rw';
+  $toolbar.style.display = rw ? '' : 'none';
+  slotrow.style.display = rw ? '' : 'none';
+  tagrow.style.display = rw ? '' : 'none';
+  $rwview.hidden = !rw;
+  $runesview.hidden = rw;
+  $q.placeholder = rw ? 'Search name, rune, base, effect…' : 'Search rune, effect, drop…';
+  rw ? render() : renderRunes();
+  window.scrollTo({ top: 0 });
+}
+tabBtns.rw.onclick = () => setTab('rw');
+tabBtns.runes.onclick = () => setTab('runes');
+
+// --- runes tab ---
+const RUNE_GROUPS = [['inv','Invocation'],['rit','Ritual'],['old','Pre-S15 (legendary)']];
+function runeHaystack(r) {
+  return [r.n, r.fx || '', r.rare, r.drops, ...(USED_BY[r.n] || []).map(u => u.name)].join(' ').toLowerCase();
+}
+function runeRow(r) {
+  const cnt = INV[r.n] || 0;
+  const used = USED_BY[r.n] || [];
+  const row = document.createElement('div');
+  row.className = 'rune-row';
+  row.innerHTML = `
+    <span class="rune r-${r.cat} rune-lg">${esc(r.n)}</span>
+    <div class="rr-info">
+      <div class="rr-fx">${r.fx ? esc(r.fx) : '—'}</div>
+      <div class="rr-sub">${esc(r.rare)}</div>
+      <div class="rr-sub">${esc(r.drops)}</div>
+      ${used.length ? `
+      <div class="rr-used"><span>Used by:</span>${used.map(u =>
+        `<button type="button" class="ub" data-rw="${esc(u.name)}">${esc(u.name)}${u.x > 1 ? ' ×' + u.x : ''}</button>`).join('')}</div>` : ''}
+    </div>
+    <div class="stepper">
+      <button type="button" class="stepm" data-rune="${esc(r.n)}"${cnt === 0 ? ' disabled' : ''}>−</button>
+      <span class="cnt${cnt > 0 ? ' has' : ''}">${cnt}</span>
+      <button type="button" class="stepp" data-rune="${esc(r.n)}">+</button>
+    </div>`;
+  return row;
+}
+function renderRunes() {
+  const parts = [];
+  let shown = 0;
+  for (const [cat, label] of RUNE_GROUPS) {
+    const rows = DATA.runes.filter(r => r.cat === cat && runeHaystack(r).includes(state.q));
+    if (!rows.length) continue;
+    const h = document.createElement('div');
+    h.className = 'rgroup';
+    h.textContent = label;
+    parts.push(h, ...rows.map(runeRow));
+    shown += rows.length;
+  }
+  $runeslist.replaceChildren(...parts);
+  $runesempty.hidden = shown > 0;
+  $invsummary.textContent = `${invTotal()} runes owned · ${craftableCount()} craftable runewords`;
+}
+
+$runeslist.addEventListener('click', e => {
+  const t = e.target;
+  const plus = t.closest('.stepp');
+  if (plus) { const n = plus.dataset.rune; INV[n] = (INV[n] || 0) + 1; invChanged(); return; }
+  const minus = t.closest('.stepm');
+  if (minus) { const n = minus.dataset.rune; if (INV[n] > 1) INV[n]--; else delete INV[n]; invChanged(); return; }
+  const ub = t.closest('.ub');
+  if (ub) goRuneword(ub.dataset.rw);
+});
+function invChanged() { saveInv(); renderRunes(); render(); updateCraftChip(); }
+
+function goRuneword(name) {
+  if (state.tab !== 'rw') setTab('rw');
+  $q.value = name;
+  $q.dispatchEvent(new Event('input'));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+document.getElementById('invreset').onclick = () => {
+  if (!confirm('Clear your rune inventory?')) return;
+  INV = {};
+  invChanged();
+};
+
+function runeCount(rw) { return rw.runes.reduce((s, r) => s + (r.x || 1), 0); }
 function haystack(rw) {
-  return (rw.name + ' ' + rw.slot + ' ' + rw.runes.map(r => r.n).join(' ') + ' ' +
-          rw.effects.join(' ') + ' ' + rw.uses + ' ' + rw.tags.join(' ')).toLowerCase();
+  return [rw.name, rw.uses, ...rw.runes.map(r => r.n), ...rw.groups, ...rw.bases, ...rw.effects]
+    .join(' ').toLowerCase();
 }
 function filtered() {
   return DATA.runewords.filter(rw => {
-    if (state.slot !== 'All' && rw.group !== state.slot) return false;
+    if (state.slot !== 'All' && !rw.groups.includes(state.slot)) return false;
     if (state.tags.size && ![...state.tags].every(t => rw.tags.includes(t))) return false;
+    if (state.craftable && missingFor(rw).length) return false;
     if (state.q && !haystack(rw).includes(state.q)) return false;
     return true;
-  }).sort((a, b) =>
-    state.sort === 'tier' ? a.tier - b.tier :
-    state.sort === 'runes' ? a.runes.reduce((s, r) => s + (r.x || 1), 0) - b.runes.reduce((s, r) => s + (r.x || 1), 0) :
-    a.name.localeCompare(b.name)
-  );
+  }).sort((a, b) => {
+    if (state.sort === 'runes') return runeCount(a) - runeCount(b) || a.name.localeCompare(b.name);
+    if (state.sort === 'slot') return (SLOT_ORDER[a.groups[0]] ?? 99) - (SLOT_ORDER[b.groups[0]] ?? 99) || a.name.localeCompare(b.name);
+    return a.name.localeCompare(b.name);
+  });
 }
-function tierClass(t) { return t <= 5 ? 't-hi' : t <= 12 ? 't-mid' : 't-lo'; }
+
+function baseSummary(rw) { return rw.bases.length > 3 ? rw.baseCount + ' base types' : rw.bases[0]; }
+function fxLine(e) {
+  const unconfirmed = e.endsWith('|?');
+  return '<li>' + esc(unconfirmed ? e.slice(0, -2) : e) +
+    (unconfirmed ? ' <span class="warn" title="unconfirmed — single-source or disputed">⚠</span>' : '') + '</li>';
+}
 
 function card(rw) {
+  const miss = missingFor(rw);
+  const invHas = invTotal() > 0;
+  const craftBadge = !invHas ? '' : miss.length
+    ? `<span class="rw-craft-miss">${miss.map(([n, x]) => esc(n) + '×' + x).join(' ')}</span>`
+    : '<span class="rw-craft-ok" title="craftable from your inventory">✓</span>';
+  const missLine = invHas && miss.length
+    ? `<div class="missline">Missing: ${miss.map(([n, x]) => esc(n) + '×' + x).join(', ')}</div>` : '';
   const d = document.createElement('details');
   d.className = 'rw';
   d.innerHTML = `
     <summary>
       <div class="rw-top">
-        <span class="tier ${tierClass(rw.tier)}">${rw.tier}</span>
-        <span class="rw-name">${rw.name}</span>
+        <span class="rw-name">${esc(rw.name)}</span>
         <span class="chev">▶</span>
       </div>
       <div class="rw-meta">
-        <span class="slot-tag">${rw.slot}</span>
+        <span class="slot-tag">${esc(rw.groups.join('/'))}</span>
         <span class="runes">${rw.runes.map(r =>
-          `<span class="rune r-${r.c}" data-rune="${r.n}">${runeLabel(r)}</span>`).join('')}
+          `<span class="rune r-${RUNE_CAT[r.n] || 'old'}" data-rune="${esc(r.n)}">${esc(r.n)}</span>`).join('')}
         </span>
+        ${craftBadge}
       </div>
     </summary>
     <div class="rw-body">
       <h3>Effects</h3>
-      <ul class="fx">${rw.effects.map(e => `<li>${e}</li>`).join('')}</ul>
+      <ul class="fx">${rw.effects.map(fxLine).join('')}</ul>
       <h3 class="plain">Best uses</h3>
-      <p class="uses">${rw.uses}</p>
-      <div class="craftline">Craft: white <b>${rw.slot.split(' /')[0].split(' (')[0]}</b> base + ${rw.runes.map(runeLabel).join(' + ')} in the Horadric Cube (any order).</div>
-      <div class="tags">${rw.tags.map(t => {
-        const tag = TAGS.find(x => x[0] === t);
-        return tag ? `<span class="tagmini">${tag[1]}</span>` : '';
-      }).join('')}</div>
+      <p class="uses">${esc(rw.uses)}</p>
+      ${missLine}
+      <div class="craftline">Craft: white <b>${esc(baseSummary(rw))}</b> base + ${rw.runes.map(r => esc(r.n)).join(' + ')} in the Horadric Cube — order matters (disputed ⚠).</div>
+      ${rw.img ? `
+      <div class="imgwrap">
+        <button type="button" class="imgtoggle">tooltip image ↗</button>
+        <div class="imgbox" hidden></div>
+      </div>` : ''}
+      <div class="tags">${rw.tags.map(t => `<span class="tagmini">${esc(TAG_MAP[t] || t)}</span>`).join('')}</div>
     </div>`;
+  // img element is only created on first toggle so loading="lazy" never preloads it
+  const tgl = d.querySelector('.imgtoggle'), box = d.querySelector('.imgbox');
+  if (tgl && box) {
+    tgl.addEventListener('click', () => {
+      if (!box.innerHTML) box.innerHTML =
+        `<img src="${esc(rw.img)}" alt="${esc(rw.name)} tooltip" loading="lazy" referrerpolicy="no-referrer" decoding="async" onerror="this.closest('.imgwrap').remove()">`;
+      box.hidden = !box.hidden;
+    });
+  }
   // tap rune badge -> search that rune (delegate inside card)
   d.addEventListener('click', e => {
     const r = e.target.closest('.rune'); if (!r) return;
@@ -405,6 +709,19 @@ function render() {
   $list.replaceChildren(...rows.map(card));
   $empty.style.display = rows.length ? 'none' : 'block';
 }
+
+// how-to + footer copy from data
+document.getElementById('howtobody').innerHTML = `
+  <h4>Craft</h4>
+  <ol>${DATA.howto.craft.map(s => `<li>${esc(s)}</li>`).join('')}</ol>
+  <h4>Notes</h4>
+  <ul>${DATA.howto.notes.map(s => `<li>${esc(s)}</li>`).join('')}</ul>
+  <h4>Farm</h4>
+  <ul>${DATA.howto.farm.map(s => `<li>${esc(s)}</li>`).join('')}</ul>`;
+document.getElementById('dataline').textContent =
+  `Data as of ${DATA.asof} · patch ${DATA.patch} · ${DATA.tier}-tier recipes · datamined consensus (d4guides, Sportskeeda, ConsolePulse, game8) · verify in-game`;
+
+updateCraftChip();
 render();
 </script>
 </body>
