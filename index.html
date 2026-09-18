@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>D4 S15 Runewords</title>
+<title>Hell's Legacy Lexicon · D4 Season 15</title>
 <style>
   :root {
     --bg: #100d0b;
@@ -185,6 +185,12 @@
   .missline { margin-top: 8px; font-size: 12px; color: #d9a72b; }
   .chip.craft.on { background: #1c2a17; border-color: var(--green); color: #a4c77f; }
   .chip:disabled { opacity: .4; cursor: default; }
+  /* uniques tab */
+  .uq-icon { width: 28px; height: 28px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg2); flex: 0 0 auto; object-fit: cover; }
+  .uq-classes { margin-top: 10px; font-size: 12px; color: var(--dim); }
+  .uq-acq { margin-top: 10px; font-size: 12px; color: var(--dim); background: var(--bg2); border-radius: 8px; padding: 8px 10px; }
+  .uq-charms { margin-top: 16px; }
+  .uq-charms p { font-size: 12px; color: var(--dim); }
   #empty { text-align: center; color: var(--dim); padding: 48px 16px; display: none; }
   .howto { margin-top: 16px; }
   .howto summary {
@@ -204,10 +210,11 @@
 <body>
 
 <header>
-  <h1>Rune Lexicon <span class="sub">D4 Season 15 · Horadric Cube runewords</span></h1>
+  <h1>Hell's Legacy Lexicon <span class="sub">D4 Season 15 reference · runewords, runes &amp; legacy uniques</span></h1>
   <nav class="tabs" role="tablist" aria-label="Sections">
     <button class="tab on" type="button" role="tab" aria-selected="true" id="tabrw">Runewords</button>
     <button class="tab" type="button" role="tab" aria-selected="false" id="tabrunes">Runes</button>
+    <button class="tab" type="button" role="tab" aria-selected="false" id="tabuq">Uniques</button>
   </nav>
   <div class="banner" id="caveat" role="note">
     <span>Datamined values — partially unverified in-game; ancestral versions double them.</span>
@@ -244,6 +251,16 @@
     <div class="runes-note">Socketed effects per game8 datamine — single source.</div>
     <div id="runeslist"></div>
     <div id="runesempty" hidden>No runes match.</div>
+  </section>
+
+  <section id="uniquesview" hidden>
+    <div class="runes-note" id="uqacq"></div>
+    <div id="uqlist"></div>
+    <div id="uqempty" hidden>No uniques match.</div>
+    <div class="uq-charms">
+      <div class="rgroup">Talisman charms</div>
+      <p id="uqcharms"></p>
+    </div>
   </section>
 
   <details class="howto">
@@ -506,7 +523,9 @@ document.getElementById('sortseg').addEventListener('click', e => {
 $q.addEventListener('input', () => {
   state.q = $q.value.trim().toLowerCase();
   $clear.style.display = state.q ? 'block' : 'none';
-  state.tab === 'runes' ? renderRunes() : render();
+  if (state.tab === 'runes') renderRunes();
+  else if (state.tab === 'uq') renderUniques();
+  else render();
 });
 $clear.onclick = () => { $q.value = ''; $q.dispatchEvent(new Event('input')); $q.focus(); };
 
@@ -565,30 +584,37 @@ function updateCraftChip() {
 }
 
 // --- tabs ---
-const tabBtns = { rw: document.getElementById('tabrw'), runes: document.getElementById('tabrunes') };
-const $toolbar = document.getElementById('toolbar'),
+const tabBtns = { rw: document.getElementById('tabrw'), runes: document.getElementById('tabrunes'), uq: document.getElementById('tabuq') };
+const $toolbar = document.getElementById('toolbar'), $sortseg = document.getElementById('sortseg'),
       $rwview = document.getElementById('rwview'), $runesview = document.getElementById('runesview'),
+      $uniquesview = document.getElementById('uniquesview'), $uqlist = document.getElementById('uqlist'),
+      $uqempty = document.getElementById('uqempty'),
       $runeslist = document.getElementById('runeslist'), $runesempty = document.getElementById('runesempty'),
       $invsummary = document.getElementById('invsummary');
 
 function setTab(t) {
   state.tab = t;
-  tabBtns.rw.classList.toggle('on', t === 'rw');
-  tabBtns.rw.setAttribute('aria-selected', String(t === 'rw'));
-  tabBtns.runes.classList.toggle('on', t === 'runes');
-  tabBtns.runes.setAttribute('aria-selected', String(t === 'runes'));
-  const rw = t === 'rw';
-  $toolbar.style.display = rw ? '' : 'none';
+  for (const [id, btn] of Object.entries(tabBtns)) {
+    btn.classList.toggle('on', id === t);
+    btn.setAttribute('aria-selected', String(id === t));
+  }
+  const rw = t === 'rw', uq = t === 'uq';
+  $toolbar.style.display = rw || uq ? '' : 'none';
+  $sortseg.style.display = rw ? '' : 'none';
   slotrow.style.display = rw ? '' : 'none';
   tagrow.style.display = rw ? '' : 'none';
   $rwview.hidden = !rw;
-  $runesview.hidden = rw;
-  $q.placeholder = rw ? 'Search name, rune, base, effect…' : 'Search rune, effect, drop…';
-  rw ? render() : renderRunes();
+  $runesview.hidden = t !== 'runes';
+  $uniquesview.hidden = !uq;
+  $q.placeholder = t === 'rw' ? 'Search name, rune, base, effect…'
+    : t === 'runes' ? 'Search rune, effect, drop…'
+    : 'Search name, slot, class, effect, affix…';
+  if (t === 'runes') renderRunes(); else if (uq) renderUniques(); else render();
   window.scrollTo({ top: 0 });
 }
 tabBtns.rw.onclick = () => setTab('rw');
 tabBtns.runes.onclick = () => setTab('runes');
+tabBtns.uq.onclick = () => setTab('uq');
 
 // --- runes tab ---
 const RUNE_GROUPS = [['inv','Invocation'],['rit','Ritual'],['old','Pre-S15 (legendary)']];
@@ -657,6 +683,58 @@ document.getElementById('invreset').onclick = () => {
   INV = {};
   invChanged();
 };
+
+// --- uniques tab ---
+const UQ_ACQ = DATA.uniquesnotes.acquisition;
+const UQ_GROUPS = [['armor', 'Jewelry & Armor'], ['weapon', 'Weapons']];
+// slot prefix decides the grouping: Ring/Helm/Chest/Gloves -> jewelry & armor, all weapon slots -> weapons
+const uqGroup = u => /^(Ring|Helm|Chest|Gloves)/.test(u.slot) ? 'armor' : 'weapon';
+const uqFirstSentence = s => (s.match(/^[^.!?]*[.!?]/) || [s])[0];
+function uqHaystack(u) {
+  return [u.name, u.slot, u.classes, u.effect, ...u.affixes].join(' ').toLowerCase();
+}
+function uqCard(u) {
+  const d = document.createElement('details');
+  d.className = 'rw';
+  d.innerHTML = `
+    <summary>
+      <div class="rw-top">
+        <img class="uq-icon" src="${esc(u.img)}" alt="" width="28" height="28" loading="lazy"
+             referrerpolicy="no-referrer" onerror="this.remove()">
+        <span class="rw-name">${esc(u.name)}</span>
+        <span class="chev">▶</span>
+      </div>
+      <div class="rw-meta"><span class="slot-tag">${esc(u.slot)}</span></div>
+    </summary>
+    <div class="rw-body">
+      <div class="uq-classes">${esc(u.classes)}</div>
+      <h3>Effect</h3>
+      <ul class="fx">${fxLine(u.effect)}</ul>
+      ${u.affixes.length ? `
+      <h3 class="plain">Affixes</h3>
+      <ul class="fx">${u.affixes.map(fxLine).join('')}</ul>` : ''}
+      <div class="uq-acq">${esc(uqFirstSentence(UQ_ACQ))}</div>
+    </div>`;
+  return d;
+}
+function renderUniques() {
+  const parts = [];
+  let shown = 0;
+  for (const [id, label] of UQ_GROUPS) {
+    const items = DATA.uniques
+      .filter(u => uqGroup(u) === id && (!state.q || uqHaystack(u).includes(state.q)))
+      .sort((a, b) => a.name.localeCompare(b.name));
+    if (!items.length) continue;
+    const h = document.createElement('div');
+    h.className = 'rgroup';
+    h.textContent = label;
+    parts.push(h, ...items.map(uqCard));
+    shown += items.length;
+  }
+  $uqlist.replaceChildren(...parts);
+  $uqempty.hidden = shown > 0;
+  $count.textContent = shown + ' / ' + DATA.uniques.length + ' uniques';
+}
 
 function runeCount(rw) { return rw.runes.reduce((s, r) => s + (r.x || 1), 0); }
 function haystack(rw) {
@@ -747,6 +825,10 @@ function render() {
   $list.replaceChildren(...rows.map(card));
   $empty.style.display = rows.length ? 'none' : 'block';
 }
+
+// uniques banner + charms footnote copy from data
+document.getElementById('uqacq').textContent = UQ_ACQ;
+document.getElementById('uqcharms').textContent = DATA.uniquesnotes.charms;
 
 // how-to + footer copy from data
 document.getElementById('howtobody').innerHTML = `
