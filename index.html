@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>D4 S15 Runewords</title>
+<style>
+  :root {
+    --bg: #100d0b;
+    --bg2: #171310;
+    --card: #1c1613;
+    --card-hover: #241c17;
+    --line: #2e2620;
+    --text: #d8cfc0;
+    --dim: #8f8574;
+    --gold: #c7a44a;
+    --red: #b3372f;
+    --evo: #d98c2b;
+    --rit: #7b6cc4;
+    --old: #8a8578;
+    --green: #6a8f4f;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  header {
+    position: sticky; top: 0; z-index: 10;
+    background: linear-gradient(180deg, rgba(16,13,11,.98), rgba(16,13,11,.92));
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+    padding: 10px 12px 6px;
+  }
+  h1 {
+    font: 700 20px/1.2 Georgia, "Times New Roman", serif;
+    color: var(--gold);
+    letter-spacing: .5px;
+    display: flex; align-items: baseline; gap: 8px;
+  }
+  h1 .sub { font: 400 12px sans-serif; color: var(--dim); letter-spacing: 0; }
+  .searchwrap { position: relative; margin-top: 8px; }
+  .searchwrap svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 15px; height: 15px; fill: var(--dim); }
+  #q {
+    width: 100%; padding: 9px 64px 9px 32px;
+    background: var(--bg2); border: 1px solid var(--line); border-radius: 10px;
+    color: var(--text); font-size: 16px; outline: none;
+  }
+  #q:focus { border-color: var(--gold); }
+  #clearq {
+    position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+    background: none; border: none; color: var(--dim); font-size: 13px;
+    padding: 6px 8px; cursor: pointer; display: none;
+  }
+  .chips-row {
+    display: flex; gap: 6px; overflow-x: auto; padding: 8px 0 4px;
+    scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  }
+  .chips-row::-webkit-scrollbar { display: none; }
+  .chip {
+    flex: 0 0 auto; padding: 5px 12px; border-radius: 999px;
+    background: var(--bg2); border: 1px solid var(--line);
+    color: var(--dim); font-size: 13px; cursor: pointer; user-select: none;
+    transition: all .15s;
+  }
+  .chip.on { background: #3a2d14; border-color: var(--gold); color: var(--gold); }
+  .chip.slot.on { background: #3a2d14; }
+  .chip.tag.on { background: #14202e; border-color: #5a7ea6; color: #9ec1e8; }
+  .chip:active { transform: scale(.96); }
+  .toolbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 4px 0 2px; gap: 8px;
+  }
+  #count { font-size: 12px; color: var(--dim); white-space: nowrap; }
+  .seg { display: flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .seg button {
+    background: none; border: none; color: var(--dim);
+    font-size: 12px; padding: 4px 10px; cursor: pointer;
+  }
+  .seg button.on { background: #3a2d14; color: var(--gold); }
+  main { padding: 10px 12px 24px; max-width: 720px; margin: 0 auto; }
+  .rw {
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    margin-bottom: 8px; overflow: hidden;
+  }
+  .rw summary {
+    list-style: none; cursor: pointer; padding: 11px 12px;
+    display: grid; grid-template-columns: 1fr auto; gap: 2px 8px;
+    align-items: center;
+  }
+  .rw summary::-webkit-details-marker { display: none; }
+  .rw summary:active { background: var(--card-hover); }
+  .rw-top { display: flex; align-items: center; gap: 8px; min-width: 0; }
+  .tier {
+    flex: 0 0 auto; width: 26px; height: 26px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700;
+  }
+  .t-hi { background: #3a1512; color: #e8655c; border: 1px solid var(--red); }
+  .t-mid { background: #332a12; color: var(--gold); border: 1px solid #6b5824; }
+  .t-lo { background: #20242a; color: #9aa5b1; border: 1px solid #39424d; }
+  .rw-name { font: 600 16px Georgia, serif; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .chev { color: var(--dim); font-size: 12px; transition: transform .2s; flex: 0 0 auto; }
+  details[open] .chev { transform: rotate(90deg); }
+  .rw-meta { grid-column: 1 / -1; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+  .slot-tag { font-size: 11px; color: var(--dim); text-transform: uppercase; letter-spacing: .5px; }
+  .runes { display: flex; gap: 4px; flex-wrap: wrap; }
+  .rune {
+    font-size: 11px; padding: 2px 8px; border-radius: 6px; cursor: pointer;
+    border: 1px solid transparent; font-weight: 600;
+  }
+  .rune:active { transform: scale(.94); }
+  .r-evo { background: #33230d; color: var(--evo); border-color: #5c3f16; }
+  .r-rit { background: #221f33; color: var(--rit); border-color: #3d3760; }
+  .r-old { background: #22201c; color: var(--old); border-color: #3a352c; }
+  .rw-body { padding: 0 12px 12px; border-top: 1px solid var(--line); }
+  .rw-body h3 { font: 600 11px sans-serif; text-transform: uppercase; letter-spacing: 1px; color: var(--gold); margin: 10px 0 4px; }
+  .rw-body h3.plain { color: #9ec1e8; }
+  .fx { list-style: none; }
+  .fx li {
+    font-size: 14px; color: var(--text); padding: 3px 0 3px 14px; position: relative;
+  }
+  .fx li::before { content: "◆"; position: absolute; left: 0; top: 3px; font-size: 8px; color: var(--gold); }
+  .uses { font-size: 13px; color: var(--dim); }
+  .craftline {
+    margin-top: 10px; font-size: 12px; color: var(--dim);
+    background: var(--bg2); border-radius: 8px; padding: 8px 10px;
+  }
+  .craftline b { color: var(--text); font-weight: 600; }
+  .tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 8px; }
+  .tagmini { font-size: 10px; color: #9ec1e8; background: #14202e; border-radius: 4px; padding: 2px 6px; }
+  #empty { text-align: center; color: var(--dim); padding: 48px 16px; display: none; }
+  .howto { margin-top: 16px; }
+  .howto summary {
+    list-style: none; cursor: pointer; color: var(--gold);
+    font-size: 14px; font-weight: 600; padding: 10px 0; text-align: center;
+    border: 1px dashed var(--line); border-radius: 10px; background: var(--bg2);
+  }
+  .howto summary::-webkit-details-marker { display: none; }
+  .howto div { padding: 12px 4px; font-size: 14px; color: var(--text); }
+  .howto ol { padding-left: 20px; }
+  .howto li { margin: 6px 0; }
+  .howto h4 { color: var(--gold); margin: 12px 0 4px; font-size: 14px; }
+  .howto p { color: var(--dim); font-size: 13px; margin: 6px 0; }
+  footer { text-align: center; color: #55503f; font-size: 11px; padding: 16px; }
+  footer a { color: #7a6f57; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Rune Lexicon <span class="sub">D4 Season 15 · Horadric Cube runewords</span></h1>
+  <div class="searchwrap">
+    <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14z"/></svg>
+    <input id="q" type="search" placeholder="Search name, rune, effect…" autocomplete="off">
+    <button id="clearq" aria-label="Clear">✕</button>
+  </div>
+  <div class="toolbar">
+    <span id="count"></span>
+    <div class="seg" id="sortseg">
+      <button data-sort="tier" class="on">Tier</button>
+      <button data-sort="runes">Runes</button>
+      <button data-sort="az">A–Z</button>
+    </div>
+  </div>
+  <div class="chips-row" id="slotrow"></div>
+  <div class="chips-row" id="tagrow"></div>
+</header>
+
+<main>
+  <div id="list"></div>
+  <div id="empty">No runewords match. Try clearing filters.</div>
+
+  <details class="howto">
+    <summary>⚙ How to craft & farm runes</summary>
+    <div>
+      <h4>Horadric Cube recipe</h4>
+      <ol>
+        <li>Get a <b>white (Common)</b> base item of the right type (chest, sword, staff…).</li>
+        <li>Open the <b>Horadric Cube</b> and place the base + the exact runes inside.</li>
+        <li>Press <b>Transmute</b> — button lights up when the combo is valid.</li>
+      </ol>
+      <h4>Notes</h4>
+      <p>• Runes can go in <b>any order</b>; no sockets needed on the base.<br>
+         • Blue items can be stripped to white via the Cube's <b>Remove Affixes</b>.<br>
+         • The result is a Unique — you can socket, enchant, and masterwork it.<br>
+         • Salvaging the runeword usually returns the runes.<br>
+         • This bypasses the normal 2-rune limit — recipes use 2–5 runes.</p>
+      <h4>Farming</h4>
+      <p>• <b>The Countess</b> — dedicated rune boss, ~5 runes per kill.<br>
+         • <b>The Pit</b> — higher tiers = better rune quality.<br>
+         • <b>Seasonal quest</b> — early rewards include Tal + Eth (free Stealth).<br>
+         • Helltides / Nightmare Dungeons elites; Purveyor gambling; trading; Rebirth transfers.</p>
+      <h4>New runes this season</h4>
+      <p>Evocation: <span style="color:var(--evo)">Ber, Ist, Ith, Lo, Ral, Sol, Tir</span> ·
+         Ritual: <span style="color:var(--rit)">Amn, Eth, Mal, Ort, Tal</span> ·
+         Older: Jah, Ohm, Vex, Thul. <b>Ber &amp; Jah are the rare chase runes.</b></p>
+    </div>
+  </details>
+
+  <footer>
+    Effects per data-mined list (aoeah.com) · community rankings — verify in-game.<br>
+    Tap a rune badge to find every runeword using it.
+  </footer>
+</main>
+
+<script id="rw-data" type="application/json">
+{
+  "runewords": [
+    {"name":"Enigma","tier":1,"slot":"Chest","group":"Chest","runes":[{"n":"Jah","c":"old"},{"n":"Ith","c":"evo"},{"n":"Ber","c":"evo"}],
+     "effects":["+2 to All Skills","+45% Movement Speed","12% Damage Reduction","+40% Maximum Life","+[91–1,225] Armor","Your Evade is now Sorcerer's Teleport, costs 33 Primary Resource"],
+     "uses":"Universal — every class. Evade-teleport mobility; pair with evade cooldown resets for permanent teleport rotation. Roll away MS/armor if capped.",
+     "tags":["endgame","mobility","universal"]},
+    {"name":"Grief","tier":2,"slot":"Sword (Phase Blade)","group":"Weapon","runes":[{"n":"Eth","c":"rit"},{"n":"Tir","c":"evo"},{"n":"Lo","c":"evo"},{"n":"Mal","c":"rit"},{"n":"Ral","c":"evo"}],
+     "effects":["+[750–1,000]% Weapon Damage","+20% Deadly Strike Chance","+[30–40]% Attack Speed","+100% Damage to Demons","+2 Primary Resource on Kill","Direct damage inflicts 40% bonus Poisoning damage over 5s"],
+     "uses":"Overtuned melee weapon. Paladin-style + shield builds, Rampage Barbarian speed farm, poison Rogue, fast attackers.",
+     "tags":["endgame","melee","poison"]},
+    {"name":"Insight","tier":3,"slot":"Staff","group":"Weapon","runes":[{"n":"Ral","c":"evo"},{"n":"Tir","c":"evo"},{"n":"Tal","c":"rit"},{"n":"Sol","c":"evo"}],
+     "effects":["+35% Attack Speed","+[16–46]% Critical Strike Chance","+[2–345] Weapon Damage","+[2–360] All Stats","×200% Critical Strike Damage Multiplier"],
+     "uses":"Top-tier Sorcerer crit weapon — crit ceiling ~92% with GA/masterwork. Combos with crit-splinter multipliers.",
+     "tags":["endgame","crit","sorc"]},
+    {"name":"Spirit","tier":4,"slot":"Sword","group":"Weapon","runes":[{"n":"Tal","c":"rit"},{"n":"Thul","c":"old"},{"n":"Ort","c":"rit"},{"n":"Amn","c":"rit"}],
+     "effects":["+5 to All Skills","+[25–35]% Attack Speed","×50% All Damage Multiplier","+[20–56]% Maximum Resource","50% Impairment Reduction"],
+     "uses":"Any caster or resource-hungry build; resource can exceed 112% with rolls. Cheaper runes than most top weapons.",
+     "tags":["endgame","universal","caster"]},
+    {"name":"Call to Arms","tier":5,"slot":"Sword","group":"Weapon","runes":[{"n":"Amn","c":"rit"},{"n":"Ral","c":"evo"},{"n":"Mal","c":"rit"},{"n":"Ist","c":"evo"},{"n":"Ohm","c":"old"}],
+     "effects":["+[200–250]% Weapon Damage","+1 to All Skills","×40% All Damage Multiplier","+5 to Shout Skills","+40% Attack Speed","While Shout-active: +5 All Skills, +15% Max Life, +15%[x] Max Primary Resource"],
+     "uses":"Barbarian Shout builds (effectively +10 Shout ranks). Off-hand pairing with Magnum Opus; flat AS for others.",
+     "tags":["endgame","barb"]},
+    {"name":"Stealth","tier":6,"slot":"Chest","group":"Chest","runes":[{"n":"Tal","c":"rit"},{"n":"Eth","c":"rit"}],
+     "effects":["+[1–2,200] Maximum Life","+25% Attack Speed","25% Impairment Reduction","15% Resource Generation","+25% Movement Speed","15% Damage Reduction"],
+     "uses":"The leveling chest — free Tal + Eth and a base from the seasonal quest. Use 1→70, then swap to Enigma.",
+     "tags":["leveling","universal","defense"]},
+    {"name":"Infinity","tier":7,"slot":"Staff","group":"Weapon","runes":[{"n":"Ber","c":"evo","x":2},{"n":"Mal","c":"rit"},{"n":"Ist","c":"evo"}],
+     "effects":["Lucky Hit: up to 40% Crushing Blow","+35% Movement Speed","+[2–4,400] Maximum Life","+[100–200]% Gold Drop Rate","50% chance: Rank 20 Chain Lightning on kill","Gain Rank 22 Cyclone Armor passive","Close enemies Vulnerable, take +125%[x] damage"],
+     "uses":"Speed/gold farming, melee-range casters. Crushing Blow shines vs Pit boss HP pools.",
+     "tags":["farming","endgame","caster"]},
+    {"name":"Ancient's Pledge","tier":8,"slot":"Focus / Totem / Shield","group":"Offhand","runes":[{"n":"Ral","c":"evo"},{"n":"Ort","c":"rit"},{"n":"Tal","c":"rit"}],
+     "effects":["+50% Enhanced Defense","+[35–48]% Fire / Lightning / Cold / Poison Resistance","10% Damage Taken recovered as Primary Resource","+2 to All Skills (Focus/Totem variants)"],
+     "uses":"Solves the whole resistance sheet in one slot — frees jewelry for damage. Cheap early craft for casters and shield builds.",
+     "tags":["defense","caster","leveling"]},
+    {"name":"Rain","tier":9,"slot":"Chest","group":"Chest","runes":[{"n":"Ort","c":"rit"},{"n":"Mal","c":"rit"},{"n":"Ith","c":"evo"}],
+     "effects":["+[25–40]% Maximum Resource","+5 to Nature Magic Skills","10% Damage Reduction","+35% Lightning Resistance","10% Dodge Chance","Lucky Hit: up to [15–30]% Rank 15 Tornado","50% chance: Rank 15 Cyclone Armor on Dodge"],
+     "uses":"Druid Nature Magic — Tornado/Storm setups; dodge procs pull packs together.",
+     "tags":["druid","endgame","caster"]},
+    {"name":"Phoenix","tier":10,"slot":"Sword","group":"Weapon","runes":[{"n":"Vex","c":"old","x":2},{"n":"Lo","c":"evo"},{"n":"Jah","c":"old"}],
+     "effects":["+[1–632] Life on Kill","Lucky Hit: up to 40% +[1,500–2,400] Fire Damage","+20% Deadly Strike Chance","×50% All Damage Multiplier","On level-up: Rank 40 Ring of Fire","Lucky Hit: [15–30]% Rank 22 Fire Spear"],
+     "uses":"Fire builds, dual-wield Barbarian deadly-strike stacking (skip crit via Hellfire Splinter).",
+     "tags":["leveling","melee","fire"]},
+    {"name":"King's Grace","tier":11,"slot":"Mace","group":"Weapon","runes":[{"n":"Amn","c":"rit"},{"n":"Ral","c":"evo"},{"n":"Thul","c":"old"}],
+     "effects":["+100% Damage to Demons","+100% Damage to Undead","+[1–948] Life on Hit","+50% Lucky Hit Chance","×75% All Damage Multiplier"],
+     "uses":"Generic damage stick; +50% LH chance can revive lucky-hit builds. ×75 can hit ~×150 with masterwork.",
+     "tags":["endgame","melee"]},
+    {"name":"Pattern","tier":12,"slot":"Dagger","group":"Weapon","runes":[{"n":"Tal","c":"rit"},{"n":"Ort","c":"rit"},{"n":"Thul","c":"old"}],
+     "effects":["30% Block Chance","×50% All Damage Multiplier","+10% All Stats","Lucky Hit: up to 40% +[400–2,700] Poison damage over 10s","+[10–20]% Critical Strike Chance","+[203–400] Resistance to All Elements"],
+     "uses":"Defensive Rogue / poison off-hand; crit roll up to 40% with GA+MW solves crit in one slot.",
+     "tags":["rogue","defense","crit"]},
+    {"name":"Holy Thunder","tier":13,"slot":"Mace","group":"Weapon","runes":[{"n":"Eth","c":"rit"},{"n":"Ral","c":"evo"},{"n":"Ort","c":"rit"},{"n":"Tal","c":"rit"}],
+     "effects":["+35% Lightning Resistance","×50% All Damage Multiplier","+20% Lucky Hit Chance","You emit Crackling Energy","Crackling-Energy-hit enemies take [20–35]%[x] more Holy/Fire/Lightning/Physical damage from you"],
+     "uses":"Multi-element amplifier; ~×100 combined. Stats may be incomplete in datamine.",
+     "tags":["endgame","caster"]},
+    {"name":"Strength","tier":14,"slot":"Sword","group":"Weapon","runes":[{"n":"Amn","c":"rit"},{"n":"Tir","c":"evo"}],
+     "effects":["Lucky Hit: up to 25% Crushing Blow","×50% All Damage Multiplier","+10% Strength","+[1–2,200] Maximum Life","+[1–948] Life on Hit","+2 Primary Resource on Kill"],
+     "uses":"Solid filler melee weapon; Crushing Blow scales vs tanky bosses.",
+     "tags":["melee","leveling"]},
+    {"name":"Zephyr","tier":15,"slot":"Bow / Crossbow","group":"Ranged","runes":[{"n":"Ort","c":"rit"},{"n":"Eth","c":"rit"}],
+     "effects":["+25% Movement Speed","+[30–40]% Attack Speed","+[150–180]% Enhanced Damage","Adds 1–100 Lightning Damage","+66 Attack Rating","10% Better Magic Item Chance","100% chance: Rank 3 Twister on strike"],
+     "uses":"Rogue leveling bow — craft immediately after first Ort+Eth; natural pair to Stealth.",
+     "tags":["leveling","rogue","ranged"]},
+    {"name":"Edge","tier":16,"slot":"Staff","group":"Weapon","runes":[{"n":"Tir","c":"evo"},{"n":"Tal","c":"rit"},{"n":"Amn","c":"rit"}],
+     "effects":["+35% Attack Speed","+200% Damage to Demons","Lucky Hit: up to 40% +[800–5,400] Poison damage over 10s","+[2–360] All Stats","+[50–5,917] Thorns","+200% Damage to Undead","15% extra item chance from Purveyor of Curiosities"],
+     "uses":"Gambling utility — equip while dumping Obols. Also thorns Barb/Druid.",
+     "tags":["utility","farming"]},
+    {"name":"Prudence","tier":17,"slot":"Chest","group":"Chest","runes":[{"n":"Mal","c":"rit"},{"n":"Tir","c":"evo"}],
+     "effects":["Indestructible","+500 Resistance to All Elements","10% Damage Reduction","25% Impairment Reduction","+[20–35]% Total Armor","+2 Primary Resource on Kill","10% Dodge Chance"],
+     "uses":"Pure defense — hardcore, tanks. No offense, so out of the endgame meta.",
+     "tags":["defense","leveling"]},
+    {"name":"Lore","tier":18,"slot":"Helm","group":"Helm","runes":[{"n":"Ort","c":"rit"},{"n":"Sol","c":"evo"}],
+     "effects":["+2 to All Skills","+25 Maximum Resource","10% Damage Reduction","+[1–2,800] Lightning Resistance","+2 Primary Resource on Kill","+[183–2,500] Armor"],
+     "uses":"Stopgap +2 skills helm until Leoric's Crown drops.",
+     "tags":["leveling","universal"]},
+    {"name":"Leaf","tier":19,"slot":"Staff","group":"Weapon","runes":[{"n":"Tir","c":"evo"},{"n":"Ral","c":"evo"}],
+     "effects":["+4 Primary Resource on Kill","+35% Cold Resistance","+20% Resource Generation"],
+     "uses":"Weakest of the set — likely missing datamine stats. Early resource leveling staff.",
+     "tags":["leveling","caster"]}
+  ]
+}
+</script>
+<script>
+const DATA = JSON.parse(document.getElementById('rw-data').textContent);
+const TAGS = [
+  ["leveling","Leveling"],["endgame","Endgame"],["farming","Farming"],
+  ["defense","Defense"],["mobility","Mobility"],["utility","Utility"],
+  ["melee","Melee"],["caster","Caster"],["crit","Crit"],
+  ["universal","Any class"],["barb","Barb"],["sorc","Sorc"],["druid","Druid"],["rogue","Rogue"],
+  ["poison","Poison"],["fire","Fire"],["ranged","Ranged"]
+];
+const SLOTS = ["All","Weapon","Ranged","Chest","Helm","Offhand"];
+
+const state = { q:"", slot:"All", tags:new Set(), sort:"tier" };
+const $q = document.getElementById('q'), $list = document.getElementById('list'),
+      $count = document.getElementById('count'), $empty = document.getElementById('empty'),
+      $clear = document.getElementById('clearq');
+
+// build chip rows
+const slotrow = document.getElementById('slotrow'), tagrow = document.getElementById('tagrow');
+SLOTS.forEach(s => {
+  const c = document.createElement('button');
+  c.className = 'chip slot' + (s === 'All' ? ' on' : '');
+  c.textContent = s;
+  c.onclick = () => { state.slot = s; [...slotrow.children].forEach(x => x.classList.toggle('on', x === c)); render(); };
+  slotrow.appendChild(c);
+});
+TAGS.forEach(([id, label]) => {
+  const c = document.createElement('button');
+  c.className = 'chip tag';
+  c.textContent = label;
+  c.onclick = () => {
+    if (state.tags.has(id)) { state.tags.delete(id); c.classList.remove('on'); }
+    else { state.tags.add(id); c.classList.add('on'); }
+    render();
+  };
+  tagrow.appendChild(c);
+});
+
+// sort
+document.getElementById('sortseg').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  state.sort = b.dataset.sort;
+  [...b.parentNode.children].forEach(x => x.classList.toggle('on', x === b));
+  render();
+});
+
+// search
+$q.addEventListener('input', () => {
+  state.q = $q.value.trim().toLowerCase();
+  $clear.style.display = state.q ? 'block' : 'none';
+  render();
+});
+$clear.onclick = () => { $q.value = ''; $q.dispatchEvent(new Event('input')); $q.focus(); };
+
+function runeLabel(r) { return r.n + (r.x > 1 ? '×' + r.x : ''); }
+function haystack(rw) {
+  return (rw.name + ' ' + rw.slot + ' ' + rw.runes.map(r => r.n).join(' ') + ' ' +
+          rw.effects.join(' ') + ' ' + rw.uses + ' ' + rw.tags.join(' ')).toLowerCase();
+}
+function filtered() {
+  return DATA.runewords.filter(rw => {
+    if (state.slot !== 'All' && rw.group !== state.slot) return false;
+    if (state.tags.size && ![...state.tags].every(t => rw.tags.includes(t))) return false;
+    if (state.q && !haystack(rw).includes(state.q)) return false;
+    return true;
+  }).sort((a, b) =>
+    state.sort === 'tier' ? a.tier - b.tier :
+    state.sort === 'runes' ? a.runes.reduce((s, r) => s + (r.x || 1), 0) - b.runes.reduce((s, r) => s + (r.x || 1), 0) :
+    a.name.localeCompare(b.name)
+  );
+}
+function tierClass(t) { return t <= 5 ? 't-hi' : t <= 12 ? 't-mid' : 't-lo'; }
+
+function card(rw) {
+  const d = document.createElement('details');
+  d.className = 'rw';
+  d.innerHTML = `
+    <summary>
+      <div class="rw-top">
+        <span class="tier ${tierClass(rw.tier)}">${rw.tier}</span>
+        <span class="rw-name">${rw.name}</span>
+        <span class="chev">▶</span>
+      </div>
+      <div class="rw-meta">
+        <span class="slot-tag">${rw.slot}</span>
+        <span class="runes">${rw.runes.map(r =>
+          `<span class="rune r-${r.c}" data-rune="${r.n}">${runeLabel(r)}</span>`).join('')}
+        </span>
+      </div>
+    </summary>
+    <div class="rw-body">
+      <h3>Effects</h3>
+      <ul class="fx">${rw.effects.map(e => `<li>${e}</li>`).join('')}</ul>
+      <h3 class="plain">Best uses</h3>
+      <p class="uses">${rw.uses}</p>
+      <div class="craftline">Craft: white <b>${rw.slot.split(' /')[0].split(' (')[0]}</b> base + ${rw.runes.map(runeLabel).join(' + ')} in the Horadric Cube (any order).</div>
+      <div class="tags">${rw.tags.map(t => {
+        const tag = TAGS.find(x => x[0] === t);
+        return tag ? `<span class="tagmini">${tag[1]}</span>` : '';
+      }).join('')}</div>
+    </div>`;
+  // tap rune badge -> search that rune (delegate inside card)
+  d.addEventListener('click', e => {
+    const r = e.target.closest('.rune'); if (!r) return;
+    e.preventDefault();
+    $q.value = r.dataset.rune;
+    $q.dispatchEvent(new Event('input'));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  return d;
+}
+function render() {
+  const rows = filtered();
+  $count.textContent = rows.length + ' / ' + DATA.runewords.length + ' runewords';
+  $list.replaceChildren(...rows.map(card));
+  $empty.style.display = rows.length ? 'none' : 'block';
+}
+render();
+</script>
+</body>
+</html>
