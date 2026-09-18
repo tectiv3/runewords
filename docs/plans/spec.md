@@ -7,7 +7,7 @@ Status: v2 spec — revised after scout verification + plan-critic review. Data 
 | # | Branch | Decision |
 |---|--------|----------|
 | 1 | Data authority | **Resolution rule:** canonical = d4guides + Sportskeeda agreement (both derive from patch 3.2.1 client datamine); disagreement → publish majority + per-stat ⚠; single-source claims → ⚠ mandatory; unknown values (`?`) → shown as ⚠ unknown. Global banner: values are datamined, partially unverified in-game. |
-| 2 | Scope | Only the 19 new S15 Horadric Cube runewords. |
+| 2 | Scope | **Rebranded as full S15 reference** (user decision, 2026-09-18): Runewords | Runes | Uniques tabs. Uniques tab = the 10 Legacy Uniques (world drops, patch-note values, 4 items carry client-data dispute marks) + Monarch base note + charms footnote. Talisman charms = possible future tab. Runewords/runes data unchanged (S15 cube system only). |
 | 3 | Inventory | Personal rune tally (+/− per rune). Cards show craftable ✓ or full missing list ("missing Ber×1, Mal×1"). "Craftable" filter chip (only active when inventory has ≥1 rune). Persisted in localStorage (`rw-inv-v2`, try/catch-wrapped for iOS private mode). |
 | 4 | Ranking | No power tiers. Sorts: A–Z (default), rune count, slot-group chips. |
 | 5 | Images | Hotlink verified-200 d4guides/maxroll URLs as expandable thumbnails; `referrerpolicy="no-referrer"`, `loading="lazy"`, `onerror` hides silently. |
