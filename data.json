@@ -3629,6 +3629,462 @@
    "img": "https://d4guides.gg/assets/img/items/loh/2403703916.webp",
    "cls": "Barbarian",
    "classes": "Barbarian"
+  },
+  {
+   "name": "Axial Conduit",
+   "slot": "Pants",
+   "effect": "Casting Chain Lightning has a 50% chance to activate 1 to [2-5] additional times.",
+   "affixes": [
+    "Intelligence",
+    "Skill Ranks to Chain Lightning"
+   ],
+   "drop": "Bartuc (Superior lair — Infernal Hordes Compass, 666 Burning Aether)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2206693627.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
+  },
+  {
+   "name": "Blue Rose",
+   "slot": "Ring",
+   "effect": "Skills that form Ice Spikes deal [80-100]%[x] increased damage. Lucky Hit: Up to a 15% chance to form an exploding Ice Spike, dealing 225 Cold damage. (Buffed in 3.2.1 — was 40-60%.)",
+   "affixes": [
+    "Intelligence",
+    "Skill Ranks to Frost Skills"
+   ],
+   "drop": "Duriel (Greater lair — Greater Lair Key from Initiate bosses)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3468537845.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
+  },
+  {
+   "name": "Drognan's Anguish",
+   "slot": "Ring",
+   "effect": "Casting Pyromancy Skills Burns you for 5% of your Maximum Life over 10 seconds. You inflict [200-250]%[x] increased Burning damage based on how much of your Life is Burning.",
+   "affixes": [
+    "Intelligence",
+    "Skill Ranks to Pyromancy Skills"
+   ],
+   "drop": "Andariel (Greater lair — Greater Lair Key from Initiate bosses)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3468537910.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
+  },
+  {
+   "name": "Emberfury",
+   "slot": "Amulet",
+   "effect": "Overpower increases your Pyromancy Skill damage by [20-25]%[x] and size, Mana cost and Cooldowns by 0% (d4guides lists '0%' — game8 says 10%; likely a data bug. Disputed.)|?",
+   "affixes": [
+    "Intelligence",
+    "Skill Ranks to Pyromancy Skills"
+   ],
+   "drop": "The Butcher (Greater lair — Greater Lair Key from Initiate bosses, Gea Kul)",
+   "img": "https://d4guides.gg/assets/img/items/loh/1570652872.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
+  },
+  {
+   "name": "Esadora's Overflowing Cameo",
+   "slot": "Amulet",
+   "effect": "Crackling Energy's discharge rate is increased by your Attack Speed, its damage is increased by [100-120]%[x], and each hit has a 25% chance to reduce a random Cooldown by 1 second. (Reworked in 3.x.)",
+   "affixes": [
+    "Intelligence",
+    "Attack Speed"
+   ],
+   "drop": "Andariel (Greater lair — Greater Lair Key from Initiate bosses)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3125733840.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
+  },
+  {
+   "name": "Esu's Heirloom",
+   "slot": "Boots",
+   "effect": "Your Critical Strike Chance is increased by [20-40]% of your Movement Speed bonus.",
+   "affixes": [
+    "Intelligence",
+    "Movement Speed"
+   ],
+   "drop": "Astaroth (Greater — Escalation Sigil from Escalating Nightmare Dungeons)",
+   "img": "https://d4guides.gg/assets/img/items/loh/4161198287.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
+  },
+  {
+   "name": "Fang of the Vipermagi",
+   "slot": "1H Dagger",
+   "effect": "Inferno constricts the area 2 more times and deals [20-25]%[x] increased damage.",
+   "affixes": [
+    "Weapon Damage",
+    "Cooldown Reduction"
+   ],
+   "drop": "Lord Zir (Initiate lair — Lair Key via Blood Maiden/Helltide)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2853628648.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
+  },
+  {
+   "name": "Flamescar",
+   "slot": "1H Wand",
+   "effect": "Incinerate gains one final charge, irradiating the area around you and increasing damage dealt by [200-300]%[x] but costing an additional 50 Mana per second. (Reworked in 3.x.)",
+   "affixes": [
+    "Weapon Damage",
+    "Skill Ranks to Incinerate"
+   ],
+   "drop": "Urivar (Initiate lair — Lair Key via Kurast Undercity)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2266174600.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
+  },
+  {
+   "name": "Flameweaver",
+   "slot": "Gloves",
+   "effect": "Casting Fire Bolt through your Firewall causes it to split into 3 bolts, each dealing [80-100]%[x] increased damage.",
+   "affixes": [
+    "Intelligence",
+    "All Damage Multiplier"
+   ],
+   "drop": "Harbinger of Hatred (Greater lair — Greater Lair Key from Initiate bosses)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3169250237.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
+  },
+  {
+   "name": "Fractured Winterglass",
+   "slot": "Amulet",
+   "effect": "Casting a Core Skill has a 25% chance to summon a Conjuration of the same element. Each active Conjuration grants: [2-3]%[x] increased damage, 1 Mana per second, 5%[+] Movement Speed, 2.5%[+] Damage Reduction. (Reworked in 3.x.)",
+   "affixes": [
+    "Intelligence",
+    "Skill Ranks to Conjuration Skills"
+   ],
+   "drop": "Astaroth (Greater — Escalation Sigil from Escalating Nightmare Dungeons)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2403703918.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
+  },
+  {
+   "name": "Galvanic Azurite",
+   "slot": "Ring",
+   "effect": "Cast Shock Skill damage leaves enemies Magnetized for 4 seconds, causing them to emit Crackling Energy and receive [40.0-60.0]%[x] increased Shock damage from you. Crackling Energy's damage Pulls Magnetized enemies together.",
+   "affixes": [
+    "Intelligence",
+    "Skill Ranks to Shock Skills"
+   ],
+   "drop": "Duriel (Greater lair — Greater Lair Key from Initiate bosses)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3468537847.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
+  },
+  {
+   "name": "Gift of Frost",
+   "slot": "Boots",
+   "effect": "Ice Armor gains the Permafrost Variant for free and [20-25]% increased potency.",
+   "affixes": [
+    "Intelligence",
+    "Movement Speed"
+   ],
+   "drop": "Beast in the Ice (Initiate lair — Lair Key via Nightmare Dungeons)",
+   "img": "https://d4guides.gg/assets/img/items/loh/1928117946.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
+  },
+  {
+   "name": "Gloves of the Illuminator",
+   "slot": "Gloves",
+   "effect": "Fireball now bounces as it travels, exploding each time it hits the ground, but its explosion deals [70-100]% of normal damage.",
+   "affixes": [
+    "+[69-83] Intelligence",
+    "+[2-3] to Fireball"
+   ],
+   "drop": "World drop — no boss table entry (random drops / Horadric Cube Upgrade-to-Unique)",
+   "img": "https://d4guides.gg/assets/img/items/loh/943322383.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
+  },
+  {
+   "name": "Hail of Verglas",
+   "slot": "Helm",
+   "effect": "Gain Ice Shards' Piercing Cold upgrade. Ice Shards deals [30-50]%[x] bonus damage. (Reworked in 3.x.)",
+   "affixes": [
+    "Intelligence",
+    "Skill Ranks to Ice Shards"
+   ],
+   "drop": "Astaroth (Greater — Escalation Sigil from Escalating Nightmare Dungeons)",
+   "img": "https://d4guides.gg/assets/img/items/loh/235533145.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
+  },
+  {
+   "name": "Iceheart Brais",
+   "slot": "Pants",
+   "effect": "Your Conjurations periodically unleash Frost Nova. Enemies affected by Frost Nova take [20-30]%[x] increased damage from you. (Reworked in 3.x.)",
+   "affixes": [
+    "Intelligence",
+    "Armor"
+   ],
+   "drop": "Urivar (Initiate lair — Lair Key via Kurast Undercity)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3864812508.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
+  },
+  {
+   "name": "Levin Grasp",
+   "slot": "Gloves",
+   "effect": "Spark shocks enemies 1-9 additional times and deals [20-30]%[x] increased damage.",
+   "affixes": [
+    "Intelligence",
+    "Attack Speed"
+   ],
+   "drop": "Varshan (Initiate lair — Lair Key via Tree of Whispers)",
+   "img": "https://d4guides.gg/assets/img/items/loh/1596380387.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
+  },
+  {
+   "name": "Molten Band",
+   "slot": "Ring",
+   "effect": "Your Pyromancy Critical Strike Damage is increased by [60-80]%[x] against Healthy enemies and your Pyromancy Critical Strike Chance is increased by [40-60]%[x] against Injured enemies. Killing an enemy with a Critical Strike grants both bonuses against all enemies plus 50%[+] Attack Speed for 4 seconds.",
+   "affixes": [
+    "Intelligence",
+    "Critical Strike Damage Multiplier"
+   ],
+   "drop": "Urivar (Initiate lair — Lair Key via Kurast Undercity)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3468537940.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
+  },
+  {
+   "name": "Okun's Catalyst",
+   "slot": "Off-Hand (Focus)",
+   "effect": "(PH) I need a new design! (Ball Lightning) — literal placeholder in 3.2.1 client data; item pending redesign. Pre-rework: Ball Lightning orbited a static field.|?",
+   "affixes": [
+    "Ball Lightning can be Cast while moving",
+    "+[69-83] Intelligence",
+    "+[2-3] to Ball Lightning"
+   ],
+   "drop": "World drop — no dedicated boss (general pool)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3014663072.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
+  },
+  {
+   "name": "Onyx Soul",
+   "slot": "Off-Hand (Focus)",
+   "effect": "Frozen Orb now returns to you dealing [100-120]%[x] increased damage.",
+   "affixes": [
+    "Intelligence",
+    "Skill Ranks to Frozen Orb"
+   ],
+   "drop": "Varshan (Initiate lair — Lair Key via Tree of Whispers)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3014663072.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
+  },
+  {
+   "name": "Ophidian Iris",
+   "slot": "Amulet",
+   "effect": "Hydra is now a Core Skill with increased Mana cost and its attacks now explode dealing [110-150]%[x] increased damage. (Reworked in 3.x.)",
+   "affixes": [
+    "Intelligence",
+    "Skill Ranks to Hydra"
+   ],
+   "drop": "Bartuc (Superior lair — Infernal Hordes Compass, 666 Burning Aether)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2403703981.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
+  },
+  {
+   "name": "Orsivane",
+   "slot": "1H Mace",
+   "effect": "For each Defensive Skill not on your Action Bar, you deal [15.0-25.0]%[x] increased damage and gain its associated Enchantment effect. (game8 shows 20-40% — disputed; S-tier in S15 builds.)|?",
+   "affixes": [
+    "Weapon Damage",
+    "All Damage Multiplier"
+   ],
+   "drop": "Andariel (Greater lair — Greater Lair Key from Initiate bosses)",
+   "img": "https://d4guides.gg/assets/img/items/loh/1012726266.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
+  },
+  {
+   "name": "Raiment of the Infinite",
+   "slot": "Chest Armor",
+   "effect": "Teleport pulls Close enemies to you and you gain [40-50] Damage Reduction for 8 seconds. (Reworked repeatedly.)",
+   "affixes": [
+    "Intelligence",
+    "Maximum Life"
+   ],
+   "drop": "Bartuc (Superior lair — Infernal Hordes Compass, 666 Burning Aether)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3864650843.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
+  },
+  {
+   "name": "Raiment of the Sea",
+   "slot": "Chest Armor",
+   "effect": "Blizzard's effects linger on enemies for an additional [100-120]% of its duration.",
+   "affixes": [
+    "Intelligence",
+    "Skill Ranks to Blizzard"
+   ],
+   "drop": "Varshan (Initiate lair — Lair Key via Tree of Whispers)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3864650843.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
+  },
+  {
+   "name": "Rimeblood",
+   "slot": "Gloves",
+   "effect": "Frost Bolt pierces through Crowd Controlled and Unstoppable enemies and deals [80-100]%[x] increased damage.",
+   "affixes": [
+    "Intelligence",
+    "Attack Speed"
+   ],
+   "drop": "Lord Zir (Initiate lair — Lair Key via Blood Maiden/Helltide)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3169250237.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
+  },
+  {
+   "name": "Shanar's Resonance",
+   "slot": "Off-Hand (Focus)",
+   "effect": "Deep Freeze's final blast deals [400-500]%[x] increased damage. Deep Freeze gains the Glacier Variant for free. (Glacier line added in 3.2.1.)",
+   "affixes": [
+    "Intelligence",
+    "Cooldown Reduction"
+   ],
+   "drop": "The Butcher (Greater lair — Greater Lair Key from Initiate bosses, Gea Kul)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3014663072.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
+  },
+  {
+   "name": "Sidhe Bindings",
+   "slot": "Gloves",
+   "effect": "Gain Familiar's Enchantment and Familiar's Potency is increased by [60-80]%[x]. (Reworked in 3.x.)",
+   "affixes": [
+    "Intelligence",
+    "All Damage Multiplier"
+   ],
+   "drop": "Harbinger of Hatred (Greater lair — Greater Lair Key from Initiate bosses)",
+   "img": "https://d4guides.gg/assets/img/items/loh/1416456735.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
+  },
+  {
+   "name": "Staff of Endless Rage",
+   "slot": "2H Staff",
+   "effect": "Fireball deals [140-180]%[x] increased damage and every 3rd Cast launches 2 additional projectiles.",
+   "affixes": [
+    "Weapon Damage",
+    "Skill Ranks to Fireball"
+   ],
+   "drop": "Duriel (Greater lair — Greater Lair Key from Initiate bosses)",
+   "img": "https://d4guides.gg/assets/img/items/loh/595234013.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
+  },
+  {
+   "name": "Staff of Lam Esen",
+   "slot": "2H Staff",
+   "effect": "Charged Bolts deal [55-80]%[x] increased damage, last 300% longer and seek enemies. (Reworked in 3.x.)",
+   "affixes": [
+    "Weapon Damage",
+    "Skill Ranks to Charged Bolts"
+   ],
+   "drop": "Lord Zir (Initiate lair — Lair Key via Blood Maiden/Helltide)",
+   "img": "https://d4guides.gg/assets/img/items/loh/595234045.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
+  },
+  {
+   "name": "Staff of Zerae",
+   "slot": "2H Staff",
+   "effect": "Unstable Currents increases your Armor and Resistances by 100%[+] and kills increase your damage by [4.0-5.0]%[x] for the duration.",
+   "affixes": [
+    "Weapon Damage",
+    "Skill Ranks to Shock Skills"
+   ],
+   "drop": "The Butcher (Greater lair — Greater Lair Key from Initiate bosses, Gea Kul)",
+   "img": "https://d4guides.gg/assets/img/items/loh/595234045.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
+  },
+  {
+   "name": "Starfall Coronet",
+   "slot": "Helm",
+   "effect": "Meteor Casts consume Overpower when possible, dropping an additional Meteor for every 2 Overpower consumed. Meteor deals [80-100]%[x] increased damage. (Reworked repeatedly.)",
+   "affixes": [
+    "Intelligence",
+    "Skill Ranks to Meteor"
+   ],
+   "drop": "Beast in the Ice (Initiate lair — Lair Key via Nightmare Dungeons)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2778329159.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
+  },
+  {
+   "name": "Strike of Stormhorn",
+   "slot": "Off-Hand (Focus)",
+   "effect": "Ball Lightning deals [40-60]%[x] increased damage and explodes for 40% of its total damage when dissipating. (Reworked in 3.x.)",
+   "affixes": [
+    "Intelligence",
+    "Skill Ranks to Ball Lightning"
+   ],
+   "drop": "Grigoire (Initiate lair — Lair Key via Helltide)",
+   "img": "https://d4guides.gg/assets/img/items/loh/1160822940.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
+  },
+  {
+   "name": "Tal Rasha's Iridescent Loop",
+   "slot": "Ring",
+   "effect": "Casting a Pyromancy, Shock, or Frost Skill increases your damage by [10.0-20.0]%[x] for 8 seconds, stacking once per Element. Casting again refreshes all bonuses if the previous skill was a different Element. (Reworked — was 10-25% for 85s.)",
+   "affixes": [
+    "Intelligence",
+    "All Resistances"
+   ],
+   "drop": "Harbinger of Hatred (Greater lair — Greater Lair Key from Initiate bosses)",
+   "img": "https://d4guides.gg/assets/img/items/loh/1785912170.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
+  },
+  {
+   "name": "The Oculus",
+   "slot": "1H Wand",
+   "effect": "Each enemy hit by Teleport increases the damage by [10.0-15.0]%[x] and reduces the Cooldown by 0.50 of the next Cast. Becoming Injured will Teleport you to a random location. (Reworked repeatedly.)",
+   "affixes": [
+    "Weapon Damage",
+    "Skill Ranks to Teleport"
+   ],
+   "drop": "Grigoire (Initiate lair) per maxroll / world drop per d4guides — disputed|?",
+   "img": "https://d4guides.gg/assets/img/items/loh/2266174607.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
+  },
+  {
+   "name": "Vision of the Firestorm",
+   "slot": "Helm",
+   "effect": "Firewall has [80-100]%[x] increased damage and its size is overcapped by 100%.",
+   "affixes": [
+    "Intelligence",
+    "Skill Ranks to Firewall"
+   ],
+   "drop": "Grigoire (Initiate lair — Lair Key via Helltide)",
+   "img": "https://d4guides.gg/assets/img/items/loh/235533145.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
+  },
+  {
+   "name": "Vox Omnium",
+   "slot": "2H Staff",
+   "effect": "Casting a Core Skill triggers a random equipped Basic Skill at a random enemy which deals [300-360]%[x] increased damage. (Reworked in 3.x.)",
+   "affixes": [
+    "Weapon Damage",
+    "Skill Ranks to Basic Skills"
+   ],
+   "drop": "Beast in the Ice (Initiate lair) per maxroll / Varshan per d4guides — disputed|?",
+   "img": "https://d4guides.gg/assets/img/items/loh/1241072967.webp",
+   "cls": "Sorcerer",
+   "classes": "Sorcerer"
   }
  ],
  "uniquesnotes": {
