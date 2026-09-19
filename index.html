@@ -50,15 +50,6 @@
   }
   .tab.on { background: #3a2d14; border-color: var(--gold); color: var(--gold); font-weight: 600; }
   .tab:disabled { opacity: .45; cursor: default; }
-  .banner {
-    display: flex; align-items: center; justify-content: space-between; gap: 8px;
-    margin-top: 8px; padding: 5px 6px 5px 10px; border-radius: 9px;
-    background: #221a0e; border: 1px solid #4a3a1c; color: #c9a96a; font-size: 12px;
-  }
-  .banner button {
-    background: none; border: none; color: inherit; font-size: 12px;
-    padding: 4px 6px; cursor: pointer; flex: 0 0 auto;
-  }
   .searchwrap { position: relative; margin-top: 8px; }
   .searchwrap svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 15px; height: 15px; fill: var(--dim); }
   #q {
@@ -221,6 +212,42 @@
   .howto h4 { color: var(--gold); margin: 12px 0 4px; font-size: 14px; }
   footer { text-align: center; color: #55503f; font-size: 11px; padding: 16px; }
   footer a { color: #7a6f57; }
+  /* --- desktop breakpoints (min-width only; mobile-first base above is untouched) --- */
+  @media (min-width: 768px) {
+    :root { --content-w: 1100px; }
+    body { font-size: 17px; }
+    header { padding: 10px max(20px, calc((100% - var(--content-w)) / 2)) 6px; }
+    main { max-width: var(--content-w); padding: 14px 20px 32px; }
+    .searchbar { display: flex; align-items: center; gap: 10px; }
+    .searchbar .searchwrap { flex: 1 1 auto; }
+    .searchbar .toolbar { flex: 0 0 auto; padding: 8px 0 0; }
+    .chips-row { flex-wrap: wrap; padding: 6px 0 2px; }
+    #list, #uqlist {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px;
+    }
+    #list .rw, #uqlist .rw { margin-bottom: 0; }
+    #uqlist .rgroup { grid-column: 1 / -1; }
+    .howto div { columns: 2; column-gap: 36px; }
+    .howto h4 { break-after: avoid; }
+    .howto ol, .howto ul { break-inside: avoid; }
+  }
+  @media (min-width: 1152px) {
+    :root { --content-w: 1400px; }
+    #list, #uqlist { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    #runeslist {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px;
+    }
+    #runeslist .rgroup { grid-column: 1 / -1; }
+    #runeslist .rune-row { margin-bottom: 0; }
+  }
+  /* fine-pointer affordances — hover elevation only where a real pointer exists */
+  @media (hover: hover) and (pointer: fine) {
+    .rw { transition: border-color .15s ease, box-shadow .15s ease; }
+    .rw:hover { border-color: #4d4030; box-shadow: 0 6px 18px rgba(0,0,0,.38); }
+    .chip:not(.on):not(:disabled):hover { border-color: #4a4030; color: var(--text); }
+    .seg button:not(.on):hover { color: var(--text); }
+    #q:focus { box-shadow: 0 0 0 3px rgba(199,164,74,.18); }
+  }
 </style>
 </head>
 <body>
@@ -232,10 +259,7 @@
     <button class="tab" type="button" role="tab" aria-selected="false" id="tabrunes">Runes</button>
     <button class="tab" type="button" role="tab" aria-selected="false" id="tabuq">Uniques</button>
   </nav>
-  <div class="banner" id="caveat" role="note">
-    <span>Datamined values — partially unverified in-game; ancestral versions double them.</span>
-    <button id="caveatx" type="button" aria-label="Dismiss">✕</button>
-  </div>
+  <div class="searchbar">
   <div class="searchwrap">
     <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14z"/></svg>
     <input id="q" type="search" placeholder="Search name, rune, base, effect…" autocomplete="off">
@@ -248,6 +272,7 @@
       <button data-sort="runes">Runes</button>
       <button data-sort="slot">Slot</button>
     </div>
+  </div>
   </div>
   <div class="chips-row" id="slotrow"></div>
   <div class="chips-row" id="tagrow"></div>
@@ -2812,9 +2837,6 @@ const state = { q:"", slot:"All", tags:new Set(), sort:"az", craftable:false, ta
 const $q = document.getElementById('q'), $list = document.getElementById('list'),
       $count = document.getElementById('count'), $empty = document.getElementById('empty'),
       $clear = document.getElementById('clearq');
-
-// caveat banner — dismissal is per-load, not persisted
-document.getElementById('caveatx').onclick = () => document.getElementById('caveat').remove();
 
 // build chip rows
 const slotrow = document.getElementById('slotrow'), tagrow = document.getElementById('tagrow');
