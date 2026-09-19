@@ -185,6 +185,7 @@
   .missline { margin-top: 8px; font-size: 12px; color: #d9a72b; }
   .chip.craft.on { background: #1c2a17; border-color: var(--green); color: #a4c77f; }
   .chip:disabled { opacity: .4; cursor: default; }
+  .chip .soon { font-size: 10px; opacity: .6; }
   /* uniques tab */
   .uq-icon { width: 28px; height: 28px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg2); flex: 0 0 auto; object-fit: cover; }
   .uq-classes { margin-top: 10px; font-size: 12px; color: var(--dim); }
@@ -235,6 +236,7 @@
   </div>
   <div class="chips-row" id="slotrow"></div>
   <div class="chips-row" id="tagrow"></div>
+  <div class="chips-row" id="uqslicerow" style="display:none"></div>
 </header>
 
 <main>
@@ -257,7 +259,7 @@
     <div class="runes-note" id="uqacq"></div>
     <div id="uqlist"></div>
     <div id="uqempty" hidden>No uniques match.</div>
-    <div class="uq-charms">
+    <div class="uq-charms" id="uqcharmsbox">
       <div class="rgroup">Talisman charms</div>
       <p id="uqcharms"></p>
     </div>
@@ -1664,7 +1666,7 @@ const SLOT_ORDER = { Chest:0, Helm:1, "1H":2, "2H":3, Ranged:4, Offhand:5 };
 
 const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
-const state = { q:"", slot:"All", tags:new Set(), sort:"az", craftable:false, tab:"rw" };
+const state = { q:"", slot:"All", tags:new Set(), sort:"az", craftable:false, tab:"rw", uqSlice:"All" };
 const $q = document.getElementById('q'), $list = document.getElementById('list'),
       $count = document.getElementById('count'), $empty = document.getElementById('empty'),
       $clear = document.getElementById('clearq');
@@ -1691,6 +1693,28 @@ TAGS.forEach(([id, label]) => {
     render();
   };
   tagrow.appendChild(c);
+});
+
+// uniques class slices — All + full roster; zero-count slices stay disabled until data lands
+const UQ_SLICES = ["All","Universal","Legacy","Mythic","Barbarian","Sorcerer","Druid","Rogue","Necromancer","Spiritborn","Paladin","Warlock"];
+const uqslicerow = document.getElementById('uqslicerow');
+UQ_SLICES.forEach(s => {
+  const c = document.createElement('button');
+  c.className = 'chip uqslice' + (s === 'All' ? ' on' : '');
+  const n = DATA.uniques.filter(u => u.cls === s).length;
+  if (s === 'All') c.textContent = s;
+  else if (!n) {
+    c.disabled = true;
+    c.innerHTML = esc(s) + ' <span class="soon">(soon)</span>';
+    c.title = 'No items yet';
+  } else c.textContent = s + ' (' + n + ')';
+  c.onclick = () => {
+    if (c.disabled) return;
+    state.uqSlice = s;
+    [...uqslicerow.children].forEach(x => x.classList.toggle('on', x === c));
+    renderUniques();
+  };
+  uqslicerow.appendChild(c);
 });
 
 // sort
@@ -1771,6 +1795,7 @@ const $toolbar = document.getElementById('toolbar'), $sortseg = document.getElem
       $rwview = document.getElementById('rwview'), $runesview = document.getElementById('runesview'),
       $uniquesview = document.getElementById('uniquesview'), $uqlist = document.getElementById('uqlist'),
       $uqempty = document.getElementById('uqempty'),
+      $uqacq = document.getElementById('uqacq'), $uqcharmsbox = document.getElementById('uqcharmsbox'),
       $runeslist = document.getElementById('runeslist'), $runesempty = document.getElementById('runesempty'),
       $invsummary = document.getElementById('invsummary');
 
@@ -1785,12 +1810,13 @@ function setTab(t) {
   $sortseg.style.display = rw ? '' : 'none';
   slotrow.style.display = rw ? '' : 'none';
   tagrow.style.display = rw ? '' : 'none';
+  uqslicerow.style.display = uq ? '' : 'none';
   $rwview.hidden = !rw;
   $runesview.hidden = t !== 'runes';
   $uniquesview.hidden = !uq;
   $q.placeholder = t === 'rw' ? 'Search name, rune, base, effect…'
     : t === 'runes' ? 'Search rune, effect, drop…'
-    : 'Search name, slot, class, effect, affix…';
+    : 'Search name, slot, class, drop, effect, affix…';
   if (t === 'runes') renderRunes(); else if (uq) renderUniques(); else render();
   window.scrollTo({ top: 0 });
 }
@@ -1869,11 +1895,16 @@ document.getElementById('invreset').onclick = () => {
 // --- uniques tab ---
 const UQ_ACQ = DATA.uniquesnotes.acquisition;
 const UQ_GROUPS = [['armor', 'Jewelry & Armor'], ['weapon', 'Weapons']];
-// slot prefix decides the grouping: Ring/Helm/Chest/Gloves -> jewelry & armor, all weapon slots -> weapons
-const uqGroup = u => /^(Ring|Helm|Chest|Gloves)/.test(u.slot) ? 'armor' : 'weapon';
+// slot prefix decides the grouping: armor/jewelry slots vs all weapon slots (incl. off-hand focus)
+const uqGroup = u => /^(Ring|Helm|Chest|Gloves|Boots|Pants|Amulet)/.test(u.slot) ? 'armor' : 'weapon';
 const uqFirstSentence = s => (s.match(/^[^.!?]*[.!?]/) || [s])[0];
 function uqHaystack(u) {
-  return [u.name, u.slot, u.classes, u.effect, ...u.affixes].join(' ').toLowerCase();
+  return [u.name, u.slot, u.classes, u.cls, u.drop, u.effect, ...u.affixes].join(' ').toLowerCase();
+}
+function uqDropLine(u) {
+  const disputed = u.drop.endsWith('|?');
+  return '⤓ ' + esc(disputed ? u.drop.slice(0, -2) : u.drop) +
+    (disputed ? ' <span class="warn" title="disputed drop source">⚠</span>' : '');
 }
 function uqCard(u) {
   const d = document.createElement('details');
@@ -1889,33 +1920,44 @@ function uqCard(u) {
       <div class="rw-meta"><span class="slot-tag">${esc(u.slot)}</span></div>
     </summary>
     <div class="rw-body">
-      <div class="uq-classes">${esc(u.classes)}</div>
+      ${u.classes ? `<div class="uq-classes">${esc(u.classes)}</div>` : ''}
       <h3>Effect</h3>
       <ul class="fx">${fxLine(u.effect)}</ul>
       ${u.affixes.length ? `
       <h3 class="plain">Affixes</h3>
       <ul class="fx">${u.affixes.map(fxLine).join('')}</ul>` : ''}
-      <div class="uq-acq">${esc(uqFirstSentence(UQ_ACQ))}</div>
+      <div class="uq-acq">${u.drop ? uqDropLine(u) : esc(uqFirstSentence(UQ_ACQ))}</div>
     </div>`;
   return d;
 }
 function renderUniques() {
+  const all = state.uqSlice === 'All';
+  const pool = DATA.uniques.filter(u => all || u.cls === state.uqSlice);
+  const match = u => !state.q || uqHaystack(u).includes(state.q);
+  // All → one level of cls groups (Legacy first, rest alphabetical);
+  // a specific slice → cls is already communicated by the active chip, so armor/weapons groups stay useful, not redundant
+  const groups = all
+    ? [...new Set(pool.map(u => u.cls))]
+        .sort((a, b) => (a === 'Legacy' ? -1 : b === 'Legacy' ? 1 : a.localeCompare(b)))
+        .map(c => [c, pool.filter(u => u.cls === c)])
+    : UQ_GROUPS.map(([id, label]) => [label, pool.filter(u => uqGroup(u) === id)]);
   const parts = [];
   let shown = 0;
-  for (const [id, label] of UQ_GROUPS) {
-    const items = DATA.uniques
-      .filter(u => uqGroup(u) === id && (!state.q || uqHaystack(u).includes(state.q)))
-      .sort((a, b) => a.name.localeCompare(b.name));
-    if (!items.length) continue;
+  for (const [label, items] of groups) {
+    const rows = items.filter(match).sort((a, b) => a.name.localeCompare(b.name));
+    if (!rows.length) continue;
     const h = document.createElement('div');
     h.className = 'rgroup';
     h.textContent = label;
-    parts.push(h, ...items.map(uqCard));
-    shown += items.length;
+    parts.push(h, ...rows.map(uqCard));
+    shown += rows.length;
   }
   $uqlist.replaceChildren(...parts);
   $uqempty.hidden = shown > 0;
-  $count.textContent = shown + ' / ' + DATA.uniques.length + ' uniques';
+  $count.textContent = shown + ' / ' + pool.length + ' uniques';
+  // WN acquisition banner + charms footnote describe the Legacy slice only
+  $uqacq.hidden = state.uqSlice !== 'Legacy';
+  $uqcharmsbox.hidden = state.uqSlice !== 'Legacy';
 }
 
 function runeCount(rw) { return rw.runes.reduce((s, r) => s + (r.x || 1), 0); }
