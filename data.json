@@ -4565,6 +4565,302 @@
    "img": "https://d4guides.gg/assets/img/items/loh/3564293650.webp",
    "cls": "Necromancer",
    "classes": "Necromancer"
+  },
+  {
+   "name": "Band of First Breath",
+   "slot": "Ring",
+   "effect": "Casting Evade consumes 1 stack of Resolve to increase your damage dealt by [50-60]%[x] for 5 seconds. Gain Armored Hide's Passive Effect. (Reworked in 3.x.)",
+   "affixes": [
+    "Dexterity",
+    "Attack Speed"
+   ],
+   "drop": "Urivar (Initiate lair — Lair Key via Kurast Undercity)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3723615896.webp",
+   "cls": "Spiritborn",
+   "classes": "Spiritborn"
+  },
+  {
+   "name": "Balazan's Maxtlatl",
+   "slot": "Pants",
+   "effect": "Your Casts damage Close enemies for [125-150]% of your Thorns and also deal 100% of this damage as Poisoning over 3 seconds. Each Thorns retaliation increases the Poisoning damage by 100% for 5 seconds, up to 300%. (d4guides renders the constants as literal '0%' — restored from game8; thorns% 125-150 vs game8 100-150, disputed.)|?",
+   "affixes": [
+    "Dexterity",
+    "Thorns"
+   ],
+   "drop": "Varshan (Initiate lair — Lair Key via Tree of Whispers)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2779415892.webp",
+   "cls": "Spiritborn",
+   "classes": "Spiritborn"
+  },
+  {
+   "name": "Craze of the Dead God",
+   "slot": "Gloves",
+   "effect": "When you would take direct damage, it is instead distributed as Poisoning over the next 10 seconds but increased by [10-0]%. Lucky Hit: Direct damage has up to a 25% chance based on your Poisoned Life percentage to infect an enemy with Touch of Death. (game8 shows 30-0% — disputed.)|?",
+   "affixes": [
+    "Dexterity",
+    "Skill Ranks to Touch of Death"
+   ],
+   "drop": "Andariel (Greater lair — Greater Lair Key from Initiate bosses)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2338544348.webp",
+   "cls": "Spiritborn",
+   "classes": "Spiritborn"
+  },
+  {
+   "name": "Echo of Kwatli",
+   "slot": "Amulet",
+   "effect": "You deal [53-67]%[x] increased damage to Vulnerable enemies. After making an enemy Vulnerable, your next direct damage to them: Heals you for 5% of your Maximum Life, Generates 10 Vigor, Removes the Vulnerable effect.",
+   "affixes": [
+    "Dexterity",
+    "Vulnerable Damage Multiplier"
+   ],
+   "drop": "Astaroth (Greater — Escalation Sigil from Escalating Nightmare Dungeons)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2403703954.webp",
+   "cls": "Spiritborn",
+   "classes": "Spiritborn"
+  },
+  {
+   "name": "Harmony of Ebewaka",
+   "slot": "Helm",
+   "effect": "According to your secondary Spirit Hall choice, your Skills are all additionally Jaguar, Eagle, Gorilla, or Centipede Skills. Your Skills deal [25-30]%[x] increased damage per Spirit type they have.",
+   "affixes": [
+    "Dexterity",
+    "Maximum Life"
+   ],
+   "drop": "Bartuc (Superior lair — Infernal Hordes Compass, 666 Burning Aether)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2139614930.webp",
+   "cls": "Spiritborn",
+   "classes": "Spiritborn"
+  },
+  {
+   "name": "Hesha e Kesungi",
+   "slot": "Gloves",
+   "effect": "The Protector can be invoked at range and Pulls inward with its smashes. Enemies in its area take [50-60]%[x] increased damage from your Gorilla Skills, doubled while they are Knocked Down or a Boss. (Values re-tuned in 3.x.)",
+   "affixes": [
+    "Dexterity",
+    "Skill Ranks to Gorilla Skills"
+   ],
+   "drop": "The Butcher (Greater lair — Greater Lair Key from Initiate bosses, Gea Kul)",
+   "img": "https://d4guides.gg/assets/img/items/loh/281022526.webp",
+   "cls": "Spiritborn",
+   "classes": "Spiritborn"
+  },
+  {
+   "name": "Jacinth Shell",
+   "slot": "Chest Armor",
+   "effect": "Spending Vigor Heals you for [7-10]% of your Maximum Life. Every second, your active Cooldowns each drain 10% Maximum Life from you to reduce their durations by 2 seconds.",
+   "affixes": [
+    "Dexterity",
+    "Vigor per Second"
+   ],
+   "drop": "Andariel (Greater lair — Greater Lair Key from Initiate bosses)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3911734147.webp",
+   "cls": "Spiritborn",
+   "classes": "Spiritborn"
+  },
+  {
+   "name": "Loyalty's Mantle",
+   "slot": "Helm",
+   "effect": "While your Spirit Hall choices match: Their bonuses are 100% more potent. Skills of their Base Spirit gain [50-60]% Vigor Cost Reduction and [50-60]% Cooldown Reduction.",
+   "affixes": [
+    "Dexterity",
+    "Maximum Life"
+   ],
+   "drop": "Bartuc (Superior lair — Infernal Hordes Compass, 666 Burning Aether)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3408472719.webp",
+   "cls": "Spiritborn",
+   "classes": "Spiritborn"
+  },
+  {
+   "name": "Path of the Emissary",
+   "slot": "Boots",
+   "effect": "Every [6-4] meters you move, invoke a base Core Skill from your primary Spirit Hall. While Ravager is active, Casting Core Skills instantly dashes you to your target. (Distance re-tuned in 3.x.)",
+   "affixes": [
+    "Dexterity",
+    "Skill Ranks to Core Skills"
+   ],
+   "drop": "The Butcher (Greater lair — Greater Lair Key from Initiate bosses, Gea Kul)",
+   "img": "https://d4guides.gg/assets/img/items/loh/4202452917.webp",
+   "cls": "Spiritborn",
+   "classes": "Spiritborn"
+  },
+  {
+   "name": "Peacemonger's Signet",
+   "slot": "Ring",
+   "effect": "While you have at least 4 stacks of Ferocity, you gain [15-20]%[x] increased damage and [60-80]%[+] increased Armor. Gaining Ferocity also grants Resolve. (Reworked in 3.x.)",
+   "affixes": [
+    "Dexterity",
+    "Attack Speed"
+   ],
+   "drop": "Grigoire (Initiate lair — Lair Key via Helltide)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2674984151.webp",
+   "cls": "Spiritborn",
+   "classes": "Spiritborn"
+  },
+  {
+   "name": "Protean Heart",
+   "slot": "Amulet",
+   "effect": "The Base Spirit of a Skill cast grants: Eagle [17-20]%[+] Movement Speed; Gorilla [17-20]% Damage Reduction; Jaguar [17-20]%[+] Attack Speed; Centipede [1.7-2.0]% Life per Second. Casting a different Base Spirit's Skill swaps the bonus and increases Core Stats by 100%[+] for 7 seconds.",
+   "affixes": [
+    "Dexterity",
+    "Skill Ranks to All Skills"
+   ],
+   "drop": "Harbinger of Hatred (Greater lair — Greater Lair Key from Initiate bosses)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2403703950.webp",
+   "cls": "Spiritborn",
+   "classes": "Spiritborn"
+  },
+  {
+   "name": "Protection of the Prime",
+   "slot": "Pants",
+   "effect": "While moving, you gain [25-30]% Dodge Chance and Damage Reduction. After standing still for 2 seconds, you become Unstoppable until you move.",
+   "affixes": [
+    "Dexterity",
+    "Armor"
+   ],
+   "drop": "Beast in the Ice (Initiate lair — Lair Key via Nightmare Dungeons)",
+   "img": "https://d4guides.gg/assets/img/items/loh/541970418.webp",
+   "cls": "Spiritborn",
+   "classes": "Spiritborn"
+  },
+  {
+   "name": "Ring of Midday Hunt",
+   "slot": "Ring",
+   "effect": "Your Maximum Vigor is increased by 50%, and killing an enemy grants you [7-10] Vigor. While you have Ferocity, your new Poisoning effects last 33% longer.",
+   "affixes": [
+    "Dexterity",
+    "Poison Damage Multiplier"
+   ],
+   "drop": "Lord Zir (Initiate lair — Lair Key via Blood Maiden/Helltide)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3365484379.webp",
+   "cls": "Spiritborn",
+   "classes": "Spiritborn"
+  },
+  {
+   "name": "Ring of Midnight Sun",
+   "slot": "Ring",
+   "effect": "When you Critically Strike, you regain [40-50]%[+] of the Vigor you've spent in the last 2 seconds. Gain Counterattack's Passive Effect.",
+   "affixes": [
+    "Dexterity",
+    "Critical Strike Chance"
+   ],
+   "drop": "Astaroth (Greater — Escalation Sigil from Escalating Nightmare Dungeons)",
+   "img": "https://d4guides.gg/assets/img/items/loh/1238901858.webp",
+   "cls": "Spiritborn",
+   "classes": "Spiritborn"
+  },
+  {
+   "name": "Ring of Writhing Moon",
+   "slot": "Ring",
+   "effect": "A Pestilent Swarm spawns from you every 4 seconds, dealing [188-225] Poison damage per hit. Your Pestilent Swarms orbit you and reduce an equipped Eagle Skill's cooldown by 0.25s per hit. (Fully reworked in 3.x.)",
+   "affixes": [
+    "Dexterity",
+    "Poison Damage Multiplier"
+   ],
+   "drop": "Lord Zir (Initiate lair — Lair Key via Blood Maiden/Helltide)",
+   "img": "https://d4guides.gg/assets/img/items/loh/561861532.webp",
+   "cls": "Spiritborn",
+   "classes": "Spiritborn"
+  },
+  {
+   "name": "Rod of Kepeleke",
+   "slot": "2H Quarterstaff",
+   "effect": "Your Core Skills are now additionally Basic Skills and free to cast. When cast at Maximum Vigor, they Consume all Vigor to cast at their largest Size and become guaranteed Critical Strikes, with [1.00-1.20]%[x] increased Critical Strike Damage per point of Vigor spent. (3.2.1: crit-per-Vigor raised from 0.85-1.05; damage-reduction clause removed.)",
+   "affixes": [
+    "Weapon Damage",
+    "Skill Ranks to Core Skills"
+   ],
+   "drop": "Duriel (Greater lair) per d4guides / Astaroth (Escalation Sigil) per maxroll — disputed|?",
+   "img": "https://d4guides.gg/assets/img/items/loh/518597483.webp",
+   "cls": "Spiritborn",
+   "classes": "Spiritborn"
+  },
+  {
+   "name": "Scorn of the Earth",
+   "slot": "Boots",
+   "effect": "Your Evade is now Soar. Soar deals [125-150]%[x] increased damage and triggers Vortex at its landing location. (Reworked in 3.x.)",
+   "affixes": [
+    "Dexterity",
+    "Skill Ranks to Soar"
+   ],
+   "drop": "Beast in the Ice (Initiate lair — Lair Key via Nightmare Dungeons)",
+   "img": "https://d4guides.gg/assets/img/items/loh/1965007443.webp",
+   "cls": "Spiritborn",
+   "classes": "Spiritborn"
+  },
+  {
+   "name": "Sepazontec",
+   "slot": "2H Quarterstaff",
+   "effect": "Your Basic Skills deal [180-220]% increased damage and always use their 3rd attack. Every 3rd cast of a Basic Skill strikes three times. (Values re-tuned in 3.x.)",
+   "affixes": [
+    "Weapon Damage",
+    "Skill Ranks to Basic Skills"
+   ],
+   "drop": "Harbinger of Hatred (Greater lair — Greater Lair Key from Initiate bosses)",
+   "img": "https://d4guides.gg/assets/img/items/loh/518597450.webp",
+   "cls": "Spiritborn",
+   "classes": "Spiritborn"
+  },
+  {
+   "name": "Sunbird's Gorget",
+   "slot": "Amulet",
+   "effect": "Picking up a Storm Feather forms a firestorm around you for 12 seconds dealing [900-1,050] Fire damage every 0.5s. Every 5 additional Feathers intensifies it by 100%[x] without refreshing duration. Storm Feathers are now Jaguar Skills; the firestorm is Eagle, Jaguar, and Storm Feather. (Massively re-tuned in 3.x.)",
+   "affixes": [
+    "Dexterity",
+    "Fire Damage Multiplier"
+   ],
+   "drop": "Urivar (Initiate lair — Lair Key via Kurast Undercity)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2403703953.webp",
+   "cls": "Spiritborn",
+   "classes": "Spiritborn"
+  },
+  {
+   "name": "Sunstained War-Crozier",
+   "slot": "Charm (talisman)",
+   "effect": "Your base Focus Skills benefit from all their Upgrades, and they increase the damage of your Potency Skills by [5-20]% for 8 seconds, stacking (d4guides charm-table text is garbled — exact stacking unclear; was a 2H Quarterstaff before LoH, values 15-25% per cast up to 150-250%).|?",
+   "affixes": [],
+   "drop": "Grigoire (Initiate lair — Lair Key via Helltide; per maxroll — d4guides archive pre-LoH said Varshan/Urivar)",
+   "img": "https://d4guides.gg/assets/img/talismans/charms/1332695357.webp",
+   "cls": "Spiritborn",
+   "classes": "Spiritborn"
+  },
+  {
+   "name": "Widow's Web",
+   "slot": "Amulet",
+   "effect": "Your Critical Strikes cause your Poisoning on an enemy to burst, dealing [167-200]% of the total Poisoning instantly to them and 10% of the burst to surrounding enemies, then removing the Poisoning from the primary target.",
+   "affixes": [
+    "Dexterity",
+    "Poison Damage Multiplier"
+   ],
+   "drop": "Duriel (Greater lair — Greater Lair Key from Initiate bosses)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2403703980.webp",
+   "cls": "Spiritborn",
+   "classes": "Spiritborn"
+  },
+  {
+   "name": "Wound Drinker",
+   "slot": "Ring",
+   "effect": "Every time you deal Thorns damage, you gain [7-10] Vigor. Gain Toxic Skin's Passive Effect.",
+   "affixes": [
+    "Dexterity",
+    "Thorns"
+   ],
+   "drop": "Varshan (Initiate lair — Lair Key via Tree of Whispers)",
+   "img": "https://d4guides.gg/assets/img/items/loh/1807489873.webp",
+   "cls": "Spiritborn",
+   "classes": "Spiritborn"
+  },
+  {
+   "name": "Wushe Nak Pa",
+   "slot": "1H Glaive",
+   "effect": "Casting an Ultimate Skill grants or amplifies its matching Primary Spirit Hall Bonus with [350-400]%[+] potency for 15 seconds. The Seeker is a Focus Skill. The Hunter is a Mobility Skill. The Devourer is a Potency Skill. The Protector is a Defensive Skill. (Values massively reworked in 3.x.)",
+   "affixes": [
+    "Weapon Damage",
+    "All Damage Multiplier"
+   ],
+   "drop": "Duriel (Greater lair — Greater Lair Key from Initiate bosses)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2578341230.webp",
+   "cls": "Spiritborn",
+   "classes": "Spiritborn"
   }
  ],
  "uniquesnotes": {
