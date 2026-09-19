@@ -179,6 +179,7 @@
   .chip .soon { font-size: 10px; opacity: .6; }
   /* uniques tab */
   .uq-icon { width: 28px; height: 28px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg2); flex: 0 0 auto; object-fit: cover; cursor: pointer; }
+  .uq-icon-ph { width: 28px; height: 28px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg2); flex: 0 0 auto; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; font: 600 14px Georgia, serif; color: var(--dim); user-select: none; }
   .uq-classes { margin-top: 10px; font-size: 12px; color: var(--dim); }
   .uq-acq { margin-top: 10px; font-size: 12px; color: var(--dim); background: var(--bg2); border-radius: 8px; padding: 8px 10px; }
   .uq-charms { margin-top: 16px; }
@@ -192,6 +193,7 @@
   }
   .uq-tip-head { display: flex; align-items: center; gap: 10px; }
   .uq-tip-icon { width: 56px; height: 56px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg2); object-fit: cover; flex: 0 0 auto; }
+  .uq-tip-icon-ph { width: 56px; height: 56px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg2); flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; font: 600 28px Georgia, serif; color: var(--dim); user-select: none; }
   .uq-tip-name { font: 700 15px/1.3 Georgia, "Times New Roman", serif; color: var(--gold); }
   .uq-tip-sub { font-size: 11px; color: var(--dim); margin-top: 2px; }
   .uq-tip-fx { margin-top: 8px; font-size: 13px; color: #8fa3e8; }
@@ -4445,6 +4447,486 @@
    "img": "https://d4guides.gg/assets/img/items/loh/1241072967.webp",
    "cls": "Sorcerer",
    "classes": "Sorcerer"
+  },
+  {
+   "name": "Black River",
+   "slot": "1H Scythe",
+   "effect": "Corpse Explosion consumes up to 4 additional Corpses around the initial Corpse, gaining [120-160]%[x] damage and [42.0-50.0]% Size per additional Corpse consumed.",
+   "affixes": [
+    "+[30.0-50.0]% Chance for Corpse Explosion to Deal Double Damage",
+    "+[2-3] to Corpse Skills",
+    "+[80-94] Intelligence"
+   ],
+   "drop": "World drop — no boss table entry (general pool / Horadric Cube Upgrade-to-Unique)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2780484814.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "The Mortacrux",
+   "slot": "1H Dagger",
+   "effect": "When consuming a Corpse, there is a [40-50]% chance to also create a decaying Skeletal Simulacrum that seeks enemies but cannot attack. When it dies, it explodes for 450 Shadow damage. Treated as a Macabre Skill.",
+   "affixes": [
+    "Weapon Damage",
+    "Skill Ranks to Macabre Skills"
+   ],
+   "drop": "Grigoire (Initiate lair — Lair Key via Helltide)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2853628622.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "Mace of King Leoric",
+   "slot": "1H Mace",
+   "effect": "Your Golem consumes one of your Skeleton Mages or Warriors every 8 seconds, healing to full Life and gaining [100-120]%[x] increased damage for 10 seconds. (wowhead shows 70-80% — disputed.)|?",
+   "affixes": [
+    "Weapon Damage",
+    "Skill Ranks to Golem"
+   ],
+   "drop": "The Butcher (Greater lair — Greater Lair Key from Initiate bosses, Gea Kul)",
+   "img": "https://d4guides.gg/assets/img/items/loh/1012726267.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "Gravebloom",
+   "slot": "1H Mace",
+   "effect": "You raise 3 smaller Golems that each deal (40-60)% of normal damage and gain 30%[+] Attack Speed. (Missing from d4guides DB; slot disputed — fextralife says 2H Mace; affix set unconfirmed. Included per game8.)|?",
+   "affixes": [
+    "Golem ranks + Intelligence (wowhead, unconfirmed)"
+   ],
+   "drop": "World drop — no boss table entry (general pool / Horadric Cube Upgrade-to-Unique)",
+   "img": null,
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "Bloodless Scream",
+   "slot": "2H Scythe",
+   "effect": "Your Darkness Skills Chill enemies for up to 100% and deal [100-125]%[x] increased damage to Frozen enemies and bosses. Every 800 times you damage enemies with Darkness Skills, all Nearby enemies are Feared for 0.25s before Freezing for 3 more seconds. (Heavily reworked in LoH.)",
+   "affixes": [
+    "Weapon Damage",
+    "Skill Ranks to Darkness Skills"
+   ],
+   "drop": "Astaroth (Greater — Escalation Sigil from Escalating Nightmare Dungeons)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3890975619.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "Eggcecutioner",
+   "slot": "2H Scythe",
+   "effect": "Slain enemies have a chance to lay an egg. (Joke item — April Fools 2024; extremely rare world drop.)",
+   "affixes": [
+    "+[28.0-56.0]% Damage for 8s After Killing an Elite",
+    "+[28-56]% Movement Speed for 8s After Killing an Elite",
+    "+[2-4] Essence On Kill",
+    "+[392-532] Life on Kill"
+   ],
+   "drop": "World drop — no boss table entry (general pool / Horadric Cube Upgrade-to-Unique)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3062826230.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "Sanguivor, Blade of Zir",
+   "slot": "2H Sword",
+   "effect": "Your Summons' damage afflicts enemies with Vampiric Curse. Consuming a Corpse also contributes 3 souls to Vampiric Curse, which can stack up to 20 souls. Only Army of the Dead can unleash the souls, causing both it and the souls to deal [20.0-25.0]%[x] increased damage per soul unleashed.",
+   "affixes": [
+    "Weapon Damage",
+    "Physical Damage Multiplier"
+   ],
+   "drop": "Lord Zir (Initiate lair — Lair Key via Blood Maiden/Helltide)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2952066857.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "Gospel of the Devotee",
+   "slot": "Off-Hand (Focus)",
+   "effect": "Your Basic Skills gain the effect of every Upgrade. Damaging an enemy with a Basic Skill causes them to take [30-40]%[x] increased damage from your other Basic Skills for 10 seconds.",
+   "affixes": [
+    "Intelligence",
+    "Skill Ranks to Basic Skills"
+   ],
+   "drop": "Urivar (Initiate lair — Lair Key via Kurast Undercity)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2686474331.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "Lidless Wall",
+   "slot": "Off-Hand (Shield)",
+   "effect": "Lucky Hit: While you have an active Bone Storm, hitting an enemy has up to a [35-45]% chance to spawn a Bone Storm around them. Each Sacrifice bonus increases this chance by 25% and allows 1 additional Bone Storm. Each active Bone Storm grants 30%[x] Critical Strike Damage, up to 150%[x]. (Reworked in LoH.)",
+   "affixes": [
+    "20.0% Block Chance",
+    "+100% Main Hand Weapon Damage"
+   ],
+   "drop": "Andariel (Greater lair — Greater Lair Key from Initiate bosses)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3988898267.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "The Gloom Ward",
+   "slot": "Off-Hand (Shield)",
+   "effect": "Shadow damage infects enemies with Shadowblight for 2 seconds. Every 8th time an enemy receives Shadow damage from you while affected by Shadowblight, they take an additional [500-600]%[x] of that damage as Corrupting damage over 4 seconds.",
+   "affixes": [
+    "20.0% Block Chance",
+    "+100% Main Hand Weapon Damage"
+   ],
+   "drop": "Harbinger of Hatred (Greater lair — Greater Lair Key from Initiate bosses)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3988898264.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "Deathless Visage",
+   "slot": "Helm",
+   "effect": "Critical Strikes with Bone Spear form an echo that bursts, dealing [60-70]%[x] of its normal damage. Bone Spear deals [60-70]%[x] increased Critical Strike Damage. (Reworked — echoes no longer scale with your Crit Damage.)",
+   "affixes": [
+    "Intelligence",
+    "Skill Ranks to Bone Spear"
+   ],
+   "drop": "Beast in the Ice (Initiate lair — Lair Key via Nightmare Dungeons)",
+   "img": "https://d4guides.gg/assets/img/items/loh/1940072207.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "The Undercrown",
+   "slot": "Helm",
+   "effect": "Your maximum number of Skeleton Warriors and Skeleton Mages is increased by [2-4]. Commanding Skeleton Warriors also causes Skeleton Mages to focus the same target for 5 seconds.",
+   "affixes": [
+    "Intelligence",
+    "Skill Ranks to Minion Skills"
+   ],
+   "drop": "Duriel (Greater lair — Greater Lair Key from Initiate bosses)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3788459071.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "The Unmaker",
+   "slot": "Helm",
+   "effect": "Soulrift's duration is increased by 0.5 seconds for every 30 Essence you spend while it's active, up to 8 seconds. Soulrift deals [300-350]% of its Shadow damage per second to surrounding enemies for every 30 Essence you gain while it's active.",
+   "affixes": [
+    "Intelligence",
+    "Cooldown Reduction"
+   ],
+   "drop": "Bartuc (Superior lair — Infernal Hordes Compass, 666 Burning Aether)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3968382723.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "Blood Artisan's Cuirass",
+   "slot": "Chest Armor",
+   "effect": "When you pick up [10-3] Blood Orbs, a free Bone Spirit is spawned, dealing bonus damage based on your current Life percent.",
+   "affixes": [
+    "+100 All Stats",
+    "+[103.5-135.0]% Damage for 4s After Picking Up a Blood Orb",
+    "+[1,736-1,870] Maximum Life",
+    "+[2-3] to Bone Spirit"
+   ],
+   "drop": "World drop — no boss table entry (general pool / Horadric Cube Upgrade-to-Unique)",
+   "img": "https://d4guides.gg/assets/img/items/loh/788948417.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "Mutilator Plate",
+   "slot": "Chest Armor",
+   "effect": "You are Blood Lanced, and when Blood Lance would deal damage to you, it instead Fortifies you for 5% of your Maximum Life and has a 10% chance to form a Blood Orb. Blood Lance deals [70-90]%[x] increased damage.",
+   "affixes": [
+    "Intelligence",
+    "Skill Ranks to Blood Lance"
+   ],
+   "drop": "Duriel (Greater lair — Greater Lair Key from Initiate bosses)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3026393891.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "Vengeful Sinew",
+   "slot": "Chest Armor",
+   "effect": "Bone Spirit explodes an additional time, dealing [35-45]% of normal damage. Bone Spirit deals [30-40]%[x] increased damage.",
+   "affixes": [
+    "Intelligence",
+    "Skill Ranks to Bone Spirit"
+   ],
+   "drop": "The Butcher (Greater lair — Greater Lair Key from Initiate bosses, Gea Kul)",
+   "img": "https://d4guides.gg/assets/img/items/loh/788948417.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "Cruor's Embrace",
+   "slot": "Gloves",
+   "effect": "Casting Blood Surge picks up 4 Blood Orbs around you to expel smaller blood novas, dealing [80-100]% of normal damage. (Fully reworked in LoH — was corpse-consuming novas.)",
+   "affixes": [
+    "Intelligence",
+    "Skill Ranks to Blood Surge"
+   ],
+   "drop": "Lord Zir (Initiate lair — Lair Key via Blood Maiden/Helltide)",
+   "img": "https://d4guides.gg/assets/img/items/loh/4180564399.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "Deathgrip",
+   "slot": "Gloves",
+   "effect": "Your maximum number of Skeleton Warriors is increased by 1. Skeleton Warriors cleave and deal [40-50]%[x] increased damage. Commanding them onto a target increases the damage it takes from your Skeleton Warriors by [40-50]%[x].",
+   "affixes": [
+    "Intelligence",
+    "Skill Ranks to Skeleton Warrior"
+   ],
+   "drop": "Grigoire (Initiate lair — Lair Key via Helltide)",
+   "img": "https://d4guides.gg/assets/img/items/loh/1386088555.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "Gravewalker's Hand",
+   "slot": "Gloves",
+   "effect": "Your Essence Generation is increased by [30-40]%. Your Bone Skills deal 0.5%[x] increased damage per point of Essence you have when Cast, up to [60-80]%[x].",
+   "affixes": [
+    "Intelligence",
+    "Maximum Resource"
+   ],
+   "drop": "Bartuc (Superior lair — Infernal Hordes Compass, 666 Burning Aether)",
+   "img": "https://d4guides.gg/assets/img/items/loh/1943118925.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "Hangman's Hand",
+   "slot": "Gloves",
+   "effect": "Sever deals [35-50]%[x] increased damage and sends out 1 additional specter to attack a nearby enemy.",
+   "affixes": [
+    "Intelligence",
+    "Skill Ranks to Sever"
+   ],
+   "drop": "Varshan (Initiate lair — Lair Key via Tree of Whispers)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3860261771.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "Howl from Below",
+   "slot": "Gloves",
+   "effect": "Instead of detonating immediately, Corpse Explosion Summons a Volatile Skeleton that charges a random enemy and explodes. Corpse Explosion deals [70-90]%[x] increased damage. (Reworked — damage line added.)",
+   "affixes": [
+    "Intelligence",
+    "Attack Speed"
+   ],
+   "drop": "Beast in the Ice (Initiate lair — Lair Key via Nightmare Dungeons)",
+   "img": "https://d4guides.gg/assets/img/items/loh/4220109075.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "The Hand of Naz",
+   "slot": "Gloves",
+   "effect": "Your maximum number of Skeleton Mages is increased by 1 and they are upgraded to Arch-Mages. Arch-Mages teleport to safety when attacked and their attacks occasionally shatter, dealing [80-90]%[x] increased damage to the enemy and up to 3 additional targets. (Reworked — sacrifice counter removed.)",
+   "affixes": [
+    "Intelligence",
+    "Skill Ranks to Skeleton Mage"
+   ],
+   "drop": "Varshan (Initiate lair — Lair Key via Tree of Whispers)",
+   "img": "https://d4guides.gg/assets/img/items/loh/1763195273.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "Blood Moon Breeches",
+   "slot": "Pants",
+   "effect": "Your Summons have a [7.0-10.0]% chance to randomly inflict Decrepify or Iron Maiden when they deal damage. You deal [50-60]%[x] increased Critical Strike Damage to enemies affected by your Curses.",
+   "affixes": [
+    "Intelligence",
+    "Critical Strike Damage Multiplier"
+   ],
+   "drop": "Astaroth (Greater — Escalation Sigil from Escalating Nightmare Dungeons)",
+   "img": "https://d4guides.gg/assets/img/items/loh/969033734.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "Indira's Memory",
+   "slot": "Pants",
+   "effect": "Blood Wave is additionally a Bone Skill. It spawns a Bone Prison at its end point and increases your Blood Skill damage by [20-40]%[x] for 8 seconds when Cast. All Bone Spears are additionally Blood Skills. Bone Spears consume a Corpse to launch another Bone Spear and drain 10% of your Maximum Life.",
+   "affixes": [
+    "+[88.0-115.0]% Overpower Critical Damage",
+    "+[69-83] Intelligence",
+    "+[541-740] Maximum Life",
+    "+[80-94] Intelligence"
+   ],
+   "drop": "World drop — no boss table entry (general pool / Horadric Cube Upgrade-to-Unique)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2785721379.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "Kessime's Legacy",
+   "slot": "Pants",
+   "effect": "Blood Wave now forms a wave on each side of you. Both waves converge at your feet, Pulling In all surrounding enemies and exploding for [375-450] damage.",
+   "affixes": [
+    "Intelligence",
+    "Cooldown Reduction"
+   ],
+   "drop": "Andariel (Greater lair — Greater Lair Key from Initiate bosses)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2785721379.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "Blood Wake",
+   "slot": "Boots",
+   "effect": "Blood Mist casts Corpse Explosion on surrounding Corpses. When Blood Mist detonates a Corpse, its Cooldown is reduced by 1 second and you gain [50-60]%[+] increased Movement Speed for 3 seconds.",
+   "affixes": [
+    "Intelligence",
+    "Skill Ranks to Blood Mist"
+   ],
+   "drop": "Harbinger of Hatred (Greater lair — Greater Lair Key from Initiate bosses)",
+   "img": "https://d4guides.gg/assets/img/items/loh/905572209.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "Greaves of the Empty Tomb",
+   "slot": "Boots",
+   "effect": "Sever leaves behind Desecrated Ground that deals [300-1,200] Corrupting damage over 2 seconds.",
+   "affixes": [
+    "+[16-25]% Movement Speed",
+    "+[30.9-44.4]% Chance for Sever to Deal Double Damage",
+    "+[30.9-44.4]% Sever Size",
+    "+[69-83] Intelligence"
+   ],
+   "drop": "World drop — no boss table entry (general pool / Horadric Cube Upgrade-to-Unique)",
+   "img": "https://d4guides.gg/assets/img/items/loh/905572209.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "Path of Trag'Oul",
+   "slot": "Boots",
+   "effect": "Bone Prison traps a larger area and fires [30-35] Bone Splinters at enemies trapped within. Your Maximum Essence is increased by 2 for 10 seconds each time these Splinters hit an enemy.",
+   "affixes": [
+    "Intelligence",
+    "Skill Ranks to Bone Prison"
+   ],
+   "drop": "Duriel (Greater lair — Greater Lair Key from Initiate bosses)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2501302948.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "Deathspeaker's Pendant",
+   "slot": "Amulet",
+   "effect": "Blood Surge casts a mini nova on your Minions, dealing [41-85] damage, increased by 10% per target drained by the initial cast, up to 50%. (Reworked — damage rescaled.)",
+   "affixes": [
+    "+[80-94] Intelligence",
+    "+[5.0-8.0]% Attack Speed",
+    "+[3-5] to Blood Surge",
+    "+1 Essence per Enemy Drained"
+   ],
+   "drop": "World drop — no boss table entry (general pool / Horadric Cube Upgrade-to-Unique)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2403703921.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "Ebonpiercer",
+   "slot": "Amulet",
+   "effect": "Blight also shoots 4 smaller piercing projectiles, each dealing [60-70]% of Blight's defiled area damage. With the Piercing Darkness Variant, Ebonpiercer deals double damage.",
+   "affixes": [
+    "Intelligence",
+    "Skill Ranks to Blight"
+   ],
+   "drop": "Andariel (Greater lair — Greater Lair Key from Initiate bosses)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2403703945.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "Red Blessing",
+   "slot": "Amulet",
+   "effect": "Gain 2 Maximum Overpower. Blood Orbs grant 2 stacks of Overpower. Your Blood Skills consume 1 stack of Overpower to deal [130-150]%[x] increased damage. (Reworked in LoH.)",
+   "affixes": [
+    "Intelligence",
+    "Skill Ranks to Blood Skills"
+   ],
+   "drop": "The Butcher (Greater lair — Greater Lair Key from Initiate bosses, Gea Kul)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2403703921.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "Will of Rathma",
+   "slot": "Amulet",
+   "effect": "Vulnerable, Weakened, Crowd Controlled, or Corrupted enemies are Afflicted, taking 60% increased damage from you. Curse Skills deal [600-750] Shadow Damage when applied to Afflicted enemies.",
+   "affixes": [
+    "Intelligence",
+    "Vulnerable Damage Multiplier"
+   ],
+   "drop": "Urivar (Initiate lair — Lair Key via Kurast Undercity)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2403703952.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "Omen of Pain",
+   "slot": "Ring",
+   "effect": "A dark aura surrounds you, inflicting Decrepify and Iron Maiden on enemies who touch it. Curses inflicted this way spread to surrounding targets every [1.3-1.0] seconds and last 4 seconds outside of the aura.",
+   "affixes": [
+    "Intelligence",
+    "Maximum Life"
+   ],
+   "drop": "Bartuc (Superior lair — Infernal Hordes Compass, 666 Burning Aether)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3468537842.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "Pact of Bone",
+   "slot": "Ring",
+   "effect": "Your Minions gain [30-35]%[+] Attack Speed and Critical Strike Chance. When one of your Minions dies, your other Minions enrage, dealing [30-35]%[x] increased damage for 3 seconds.",
+   "affixes": [
+    "Intelligence",
+    "Critical Strike Damage Multiplier"
+   ],
+   "drop": "Harbinger of Hatred (Greater lair — Greater Lair Key from Initiate bosses)",
+   "img": "https://d4guides.gg/assets/img/items/loh/1903997119.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "Ring of Mendeln",
+   "slot": "Ring",
+   "effect": "Every 6th attack from each Minion is empowered, exploding for [975-1,650] Physical damage. (Damage rescaled in LoH.)",
+   "affixes": [
+    "+[10.0-12.5]% Summon Attack Speed",
+    "+[80-94] Intelligence",
+    "+[29-43]% Damage",
+    "+[69-83] Intelligence"
+   ],
+   "drop": "World drop — no boss table entry (general pool / Horadric Cube Upgrade-to-Unique)",
+   "img": "https://d4guides.gg/assets/img/items/loh/1903997119.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
+  },
+  {
+   "name": "Ring of the Sacrilegious Soul",
+   "slot": "Ring",
+   "effect": "Corpse Tendrils gains the effect of every Upgrade and is automatically cast every [8.0-6.0] seconds. (Fully reworked in LoH — was auto-cast Raise Skeleton/CE/Tendrils.)",
+   "affixes": [
+    "Intelligence",
+    "Skill Ranks to Corpse Tendrils"
+   ],
+   "drop": "Astaroth (Greater — Escalation Sigil from Escalating Nightmare Dungeons)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3564293650.webp",
+   "cls": "Necromancer",
+   "classes": "Necromancer"
   }
  ],
  "uniquesnotes": {
@@ -4942,8 +5424,9 @@ function openUqTip(u, anchor) {
   uqTip.className = 'uq-tip';
   uqTip.innerHTML = `
     <div class="uq-tip-head">
-      <img class="uq-tip-icon" src="${esc(u.img)}" alt="" width="56" height="56"
-           referrerpolicy="no-referrer" onerror="this.remove()">
+      ${u.img ? `<img class="uq-tip-icon" src="${esc(u.img)}" alt="" width="56" height="56"
+           referrerpolicy="no-referrer" onerror="this.remove()">`
+        : `<span class="uq-tip-icon-ph">${esc(u.name[0])}</span>`}
       <div>
         <div class="uq-tip-name">${esc(u.name)}</div>
         <div class="uq-tip-sub">${esc(u.slot)} · ${esc(u.classes || u.cls)}</div>
@@ -4978,7 +5461,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && uqTip) clo
 document.addEventListener('click', e => {
   if (!uqTip) return;
   const t = e.target;
-  if (uqTip.contains(t) || (t.closest && t.closest('.uq-icon'))) return;
+  if (uqTip.contains(t) || (t.closest && t.closest('.uq-icon, .uq-icon-ph'))) return;
   closeUqTip();
 }, true);
 addEventListener('scroll', positionUqTip, { passive: true });
@@ -4989,8 +5472,9 @@ function uqCard(u) {
   d.innerHTML = `
     <summary>
       <div class="rw-top">
-        <img class="uq-icon" src="${esc(u.img)}" alt="" width="28" height="28" loading="lazy"
-             referrerpolicy="no-referrer" onerror="this.remove()">
+        ${u.img ? `<img class="uq-icon" src="${esc(u.img)}" alt="" width="28" height="28" loading="lazy"
+             referrerpolicy="no-referrer" onerror="this.remove()">`
+          : `<span class="uq-icon-ph">${esc(u.name[0])}</span>`}
         <span class="rw-name">${esc(u.name)}</span>
         <span class="chev">▶</span>
       </div>
@@ -5005,7 +5489,7 @@ function uqCard(u) {
       <ul class="fx">${u.affixes.map(fxLine).join('')}</ul>` : ''}
       <div class="uq-acq">${u.drop ? uqDropLine(u) : esc(uqFirstSentence(UQ_ACQ))}</div>
     </div>`;
-  const icon = d.querySelector('.uq-icon');
+  const icon = d.querySelector('.uq-icon, .uq-icon-ph');
   if (icon) wireUqTip(icon, u);
   return d;
 }
