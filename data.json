@@ -3265,6 +3265,370 @@
    "img": "https://d4guides.gg/assets/img/items/loh/595318239.webp",
    "cls": "Warlock",
    "classes": "Warlock"
+  },
+  {
+   "name": "100,000 Steps",
+   "slot": "Boots",
+   "effect": "Ground Stomp's damage is increased by [20.0-25.0]%[x] plus an additional amount based on distance traveled since the last Ground Stomp, up to [80.0-100.0]%[x].",
+   "affixes": [
+    "Strength",
+    "Skill Ranks to Ground Stomp"
+   ],
+   "drop": "Varshan (Initiate lair — Lair Key via Tree of Whispers)",
+   "img": "https://d4guides.gg/assets/img/items/loh/301491024.webp",
+   "cls": "Barbarian",
+   "classes": "Barbarian"
+  },
+  {
+   "name": "Ancients' Oath",
+   "slot": "2H Axe",
+   "effect": "Enemies hit by Steel Grasp take [45-60]%[x] increased damage from you for 9 seconds.",
+   "affixes": [
+    "Weapon Damage",
+    "All Damage Multiplier"
+   ],
+   "drop": "Andariel (Greater lair — Greater Lair Key from Initiate bosses)",
+   "img": "https://d4guides.gg/assets/img/items/loh/1644840210.webp",
+   "cls": "Barbarian",
+   "classes": "Barbarian"
+  },
+  {
+   "name": "Arreat's Bearing",
+   "slot": "Pants",
+   "effect": "Your non-Ultimate Skills that summon Ancients now summon an additional one. Skills that summon Ancients deal [30.0-40.0]%[x] increased damage.",
+   "affixes": [
+    "Strength",
+    "Armor"
+   ],
+   "drop": "Bartuc (Superior lair — Infernal Hordes Compass, 666 Burning Aether)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3825087193.webp",
+   "cls": "Barbarian",
+   "classes": "Barbarian"
+  },
+  {
+   "name": "Bane of Ahjad-Den",
+   "slot": "Gloves",
+   "effect": "While channeling Whirlwind, you periodically hurl out a Mighty Throw that deals [75.0-90.0]%[x] increased damage. (Affixes sourced from game8 — d4guides gap.)|?",
+   "affixes": [
+    "Strength",
+    "Physical Damage Multiplier"
+   ],
+   "drop": "Harbinger of Hatred (Greater lair — Greater Lair Key from Initiate bosses)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3576379010.webp",
+   "cls": "Barbarian",
+   "classes": "Barbarian"
+  },
+  {
+   "name": "Battle Trance",
+   "slot": "Amulet",
+   "effect": "Frenzy gains the Barrage Variant for free and can stack 2 additional times. While at maximum stacks, you deal [75-100]%[x] increased damage and your other Skills gain [35-45]%[+] increased Attack Speed.",
+   "affixes": [
+    "Strength",
+    "Skill Ranks to Frenzy"
+   ],
+   "drop": "Astaroth (Greater — Escalation Sigil from Escalating Nightmare Dungeons)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3125733839.webp",
+   "cls": "Barbarian",
+   "classes": "Barbarian"
+  },
+  {
+   "name": "Chainscourged Mail",
+   "slot": "Pants",
+   "effect": "Casting a damaging Brawling Skill disables it afterwards. When all Brawling Skills on your Action Bar are disabled, they re-enable with Cooldowns refreshed. Brawling Skills deal [80-100]%[x] increased damage for each disabled Skill.",
+   "affixes": [
+    "Strength",
+    "Skill Ranks to Brawling Skills"
+   ],
+   "drop": "The Butcher (Greater lair — Greater Lair Key from Initiate bosses, Gea Kul)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3840023153.webp",
+   "cls": "Barbarian",
+   "classes": "Barbarian"
+  },
+  {
+   "name": "Dark Stalker's Medallion",
+   "slot": "Amulet",
+   "effect": "Casting a Skill with a Two-Handed Bludgeoning, Two-Handed Slashing, or Dual-Wielded weapon grants [15.0-20.0]%[x] increased damage for 15 seconds. While all three bonuses are active, you gain Crowd Control Duration and Attack Speed (d4guides lists '0%' — likely a data bug; game8 pre-rework said +25%. Disputed.)|?",
+   "affixes": [
+    "Strength",
+    "Skill Ranks to All Skills"
+   ],
+   "drop": "Duriel (Greater lair — Greater Lair Key from Initiate bosses)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2403703982.webp",
+   "cls": "Barbarian",
+   "classes": "Barbarian"
+  },
+  {
+   "name": "Emblem of Staalbreak",
+   "slot": "Amulet",
+   "effect": "Berserking's damage bonus is increased by [56.7-73.3]%[x]. While not Healthy, you are always Berserk.",
+   "affixes": [
+    "Strength",
+    "Attack Speed"
+   ],
+   "drop": "Andariel (Greater lair — Greater Lair Key from Initiate bosses)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2403703917.webp",
+   "cls": "Barbarian",
+   "classes": "Barbarian"
+  },
+  {
+   "name": "Fields of Crimson",
+   "slot": "2H Sword",
+   "effect": "Rupture's rip deals [38-50]% of the total Bleeding damage on an enemy instantly, removing all Bleeding damage from them.",
+   "affixes": [
+    "Weapon Damage",
+    "Skill Ranks to Rupture"
+   ],
+   "drop": "Lord Zir (Initiate lair — Lair Key via Blood Maiden/Helltide)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2952066818.webp",
+   "cls": "Barbarian",
+   "classes": "Barbarian"
+  },
+  {
+   "name": "Gohr's Devastating Grips",
+   "slot": "Gloves",
+   "effect": "Whirlwind deals [75-90]% increased damage and pulls enemies to you every 2 seconds.",
+   "affixes": [
+    "Strength",
+    "Skill Ranks to Whirlwind"
+   ],
+   "drop": "Grigoire (Initiate lair — Lair Key via Helltide)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3436104238.webp",
+   "cls": "Barbarian",
+   "classes": "Barbarian"
+  },
+  {
+   "name": "Hellhammer",
+   "slot": "2H Mace",
+   "effect": "Upheaval gains the Iron Burst Variant and deals [60.0-75.0]%[x] increased damage.",
+   "affixes": [
+    "Weapon Damage",
+    "Skill Ranks to Upheaval"
+   ],
+   "drop": "Andariel (Greater lair — Greater Lair Key from Initiate bosses)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2591328072.webp",
+   "cls": "Barbarian",
+   "classes": "Barbarian"
+  },
+  {
+   "name": "Hooves of the Mountain God",
+   "slot": "Boots",
+   "effect": "Casting a Basic Skill while at Maximum Fury causes your Fury to increasingly Drain until you run out, during which your Basic Skills cleave dealing [45-60]%[x] increased damage.",
+   "affixes": [
+    "Strength",
+    "Fury per Second"
+   ],
+   "drop": "Astaroth (Greater — Escalation Sigil from Escalating Nightmare Dungeons)",
+   "img": "https://d4guides.gg/assets/img/items/loh/279485684.webp",
+   "cls": "Barbarian",
+   "classes": "Barbarian"
+  },
+  {
+   "name": "Mantle of Mountain's Fury",
+   "slot": "Chest Armor",
+   "effect": "Casting Hammer of the Ancients on an Earthquake explodes for their total damage and consumes it, and causes your Hammer of the Ancients to deal [60.00-80.00]%[x] increased damage for 5 seconds.",
+   "affixes": [
+    "Strength",
+    "Skill Ranks to Earthquake Skills"
+   ],
+   "drop": "Urivar (Initiate lair — Lair Key via Kurast Undercity)",
+   "img": "https://d4guides.gg/assets/img/items/loh/700667026.webp",
+   "cls": "Barbarian",
+   "classes": "Barbarian"
+  },
+  {
+   "name": "Might of Qual-Kehk",
+   "slot": "Gloves",
+   "effect": "Mighty Throw now gains multiplicative damage instead of cooldown from Cooldown Reduction at [75.0-100.0]% effectiveness.",
+   "affixes": [
+    "Strength",
+    "Cooldown Reduction"
+   ],
+   "drop": "Grigoire (Initiate lair — Lair Key via Helltide)",
+   "img": "https://d4guides.gg/assets/img/items/loh/1541211176.webp",
+   "cls": "Barbarian",
+   "classes": "Barbarian"
+  },
+  {
+   "name": "Nomad's Longing Heart",
+   "slot": "Amulet",
+   "effect": "Core Skills deal [30.0-40.0]%[x] increased damage, but cost 25%[x] more Fury. The damage is doubled against Healthy or Injured enemies. ('Healthy or' added in 3.2.1.)",
+   "affixes": [
+    "Strength",
+    "Skill Ranks to Core Skills"
+   ],
+   "drop": "Harbinger of Hatred (Greater lair — Greater Lair Key from Initiate bosses)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2403703978.webp",
+   "cls": "Barbarian",
+   "classes": "Barbarian"
+  },
+  {
+   "name": "Overkill",
+   "slot": "2H Mace",
+   "effect": "Death Blow gains all side upgrades and deals [60.0-75.0]%[x] increased damage.",
+   "affixes": [
+    "Weapon Damage",
+    "Skill Ranks to Death Blow"
+   ],
+   "drop": "Varshan (Initiate lair — Lair Key via Tree of Whispers)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2591328078.webp",
+   "cls": "Barbarian",
+   "classes": "Barbarian"
+  },
+  {
+   "name": "Rage of Harrogath",
+   "slot": "Chest Armor",
+   "effect": "Inflicting Damage Over Time on an enemy has up to a [45-60]% chance to reduce the Cooldowns of your Skills by 0.5 seconds. (Was 1s before 3.2.1.)",
+   "affixes": [
+    "Strength",
+    "Damage Over Time Multiplier"
+   ],
+   "drop": "Duriel (Greater lair) per maxroll / The Butcher per d4guides — disputed|?",
+   "img": "https://d4guides.gg/assets/img/items/loh/2242389054.webp",
+   "cls": "Barbarian",
+   "classes": "Barbarian"
+  },
+  {
+   "name": "Ramaladni's Magnum Opus",
+   "slot": "1H Sword",
+   "effect": "Skills deal [0.35-0.50]%[x] increased damage per point of Fury you have, but 7% of your Maximum Fury drains per second while in combat. (Reworked in 3.2.1 — was flat 10 Fury/s.)",
+   "affixes": [
+    "Weapon Damage",
+    "Maximum Resource"
+   ],
+   "drop": "The Butcher (Greater lair — Greater Lair Key from Initiate bosses, Gea Kul)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2397813492.webp",
+   "cls": "Barbarian",
+   "classes": "Barbarian"
+  },
+  {
+   "name": "Ring of Red Furor",
+   "slot": "Ring",
+   "effect": "After spending 30 Fury within 5 seconds, your next non-Channeled Core or Weapon Mastery Skill Cast within 5 seconds is a guaranteed Critical Strike and deals [50-60]%[x] bonus Critical Strike Damage, +1%[x] per Fury above 30. (Reworked in 3.2.1 — was 100 Fury threshold.)",
+   "affixes": [
+    "Strength",
+    "Critical Strike Damage Multiplier"
+   ],
+   "drop": "The Butcher (Greater lair — Greater Lair Key from Initiate bosses, Gea Kul)",
+   "img": "https://d4guides.gg/assets/img/items/loh/1302303719.webp",
+   "cls": "Barbarian",
+   "classes": "Barbarian"
+  },
+  {
+   "name": "Ring of the Ravenous",
+   "slot": "Ring",
+   "effect": "Rend's duration is increased by [6.0-8.0] seconds and deals [60.0-80.0]%[x] increased damage. Brawling Skills apply 1 stack of Rend's Bleed (once per 0.5s per enemy). With the Scorching Variant, creates a wave of fire instead. (Adjusted in 3.2.1.)",
+   "affixes": [
+    "Strength",
+    "Skill Ranks to Rend"
+   ],
+   "drop": "Beast in the Ice (Initiate lair — Lair Key via Nightmare Dungeons)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3468537880.webp",
+   "cls": "Barbarian",
+   "classes": "Barbarian"
+  },
+  {
+   "name": "Sabre of Tsasgal",
+   "slot": "1H Sword",
+   "effect": "You gain [3.0-4.0]%[x] increased damage for each damaging Skill you have equipped, and an additional [6.0-8.0]%[x] for 15 seconds when each of those Skills is used.",
+   "affixes": [
+    "Weapon Damage",
+    "Cooldown Reduction"
+   ],
+   "drop": "Duriel (Greater lair — Greater Lair Key from Initiate bosses)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2397813556.webp",
+   "cls": "Barbarian",
+   "classes": "Barbarian"
+  },
+  {
+   "name": "The Open Eye of Gorgorra",
+   "slot": "Amulet",
+   "effect": "When inflicting Damage Over Time, you have a chance equal to your Critical Strike Chance to increase the damage amount by [75.0-90.0]%[x]. (game8 shows 112.5-135% — disputed.)|?",
+   "affixes": [
+    "Strength",
+    "Damage Over Time Multiplier"
+   ],
+   "drop": "Bartuc (Superior lair — Infernal Hordes Compass, 666 Burning Aether)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2403703920.webp",
+   "cls": "Barbarian",
+   "classes": "Barbarian"
+  },
+  {
+   "name": "The Relentless Heart",
+   "slot": "Chest Armor",
+   "effect": "Hammer of the Ancients deals [22.5-30.0]%[x] increased damage on consecutive hits to the same target, stacking up to 3 times.",
+   "affixes": [
+    "Strength",
+    "Skill Ranks to Hammer of the Ancients"
+   ],
+   "drop": "Beast in the Ice (Initiate lair — Lair Key via Nightmare Dungeons)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2662964751.webp",
+   "cls": "Barbarian",
+   "classes": "Barbarian"
+  },
+  {
+   "name": "The Third Blade",
+   "slot": "1H Sword",
+   "effect": "Your Weapon Mastery Skills are now also Core Skills with 100% Cooldown Reduction but cost Fury, dealing [140-160]% of normal damage. (Icon shares placeholder art with Shard of Verathiel.)",
+   "affixes": [
+    "Weapon Damage",
+    "Skill Ranks to Core Skills"
+   ],
+   "drop": "Astaroth (Greater — Escalation Sigil from Escalating Nightmare Dungeons)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2397813522.webp",
+   "cls": "Barbarian",
+   "classes": "Barbarian"
+  },
+  {
+   "name": "Tuskhelm of Joritz the Mighty",
+   "slot": "Helm",
+   "effect": "When you gain Berserking while already Berserk, you become more enraged, granting [40-50]%[x] increased damage, 6 Fury per second, and 10% Cooldown Reduction. (Reworked in 3.2.1 to a guaranteed trigger.)",
+   "affixes": [
+    "Strength",
+    "Maximum Life"
+   ],
+   "drop": "Bartuc (Superior lair — Infernal Hordes Compass, 666 Burning Aether)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3033665540.webp",
+   "cls": "Barbarian",
+   "classes": "Barbarian"
+  },
+  {
+   "name": "Twin Strikes",
+   "slot": "Gloves",
+   "effect": "Double Swing's initial sweep deals [45.0-60.0]%[x] increased damage and applies Vulnerable. Subsequent swings deal [90.0-120.0]%[x] increased damage and grant Berserking for 3 seconds.",
+   "affixes": [
+    "Strength",
+    "Skill Ranks to Double Swing"
+   ],
+   "drop": "Lord Zir (Initiate lair — Lair Key via Blood Maiden/Helltide)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3619227779.webp",
+   "cls": "Barbarian",
+   "classes": "Barbarian"
+  },
+  {
+   "name": "Ugly Bastard Helm",
+   "slot": "Helm",
+   "effect": "While Wrath of the Berserker is active, you deal [45-60]%[x] increased Fire damage.",
+   "affixes": [
+    "Strength",
+    "Fire Damage Multiplier"
+   ],
+   "drop": "Harbinger of Hatred (Greater lair — Greater Lair Key from Initiate bosses)",
+   "img": "https://d4guides.gg/assets/img/items/loh/3520552153.webp",
+   "cls": "Barbarian",
+   "classes": "Barbarian"
+  },
+  {
+   "name": "Unbroken Chain",
+   "slot": "Amulet",
+   "effect": "Swapping weapons increases the damage of Iron Maelstrom by [25.0-30.0]%[x] for 5 seconds, stacking up to 3 times. (Reworked in 3.2.1 — was Steel Grasp CDR.)",
+   "affixes": [
+    "Strength",
+    "Attack Speed"
+   ],
+   "drop": "Urivar (Initiate lair — Lair Key via Kurast Undercity)",
+   "img": "https://d4guides.gg/assets/img/items/loh/2403703916.webp",
+   "cls": "Barbarian",
+   "classes": "Barbarian"
   }
  ],
  "uniquesnotes": {
