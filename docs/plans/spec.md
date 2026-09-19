@@ -15,6 +15,7 @@ Status: v2 spec — revised after scout verification + plan-critic review. Data 
 | 7 | Hosting | GitHub Pages on `main` root, repo `tectiv3/runewords` (remote added by user; push for this deliverable is user-approved). Enable Pages idempotently (GET before POST); verify with retry loop + content grep. |
 | 8 | Updates | Manual edits to the embedded JSON block; footer stamps "data as of <date>". |
 | 9 | Class uniques (user decision, 2026-09-18) | Uniques tab folds in per-class uniques as a slice/filter model: Universal (all-class fit) | Legacy (the 10, separate slice) | Mythic (separate slice) | one slice per class (≈8 classes: scout to verify roster). Delivered iteratively — one scout/worker pair per class, main-thread data verification + checkpoint commit between pairs. Per-unique fields gain: cls, drop (most-likely source). First class: Rogue. |
+| 10 | Source data (user decision, 2026-09-18) | `data.json` in git is the editing source of truth; `scripts/sync.py` embeds it into index.html's rw-data block (only writer); `scripts/verify.py` checks sync + invariants (read-only CI gate); never hand-edit the embedded block. |
 
 ## Data notes (from scout cross-verification)
 
