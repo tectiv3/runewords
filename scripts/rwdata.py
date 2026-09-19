@@ -70,12 +70,21 @@ def check_invariants(data: dict) -> list[tuple[str, int]]:
         "howto",
         "uniques",
         "uniquesnotes",
+        "bosses",
     }
     if set(data.keys()) != expected_keys:
         raise DataError(
             f"top-level keys mismatch: got {sorted(data.keys())}, "
             f"want {sorted(expected_keys)}"
         )
+
+    # Bosses (cross-reference tab): structure only — `match` (drop-field
+    # substring for loot lookup) and `note` are optional; WN capstones rely on
+    # notes instead of loot matches.
+    for b in data["bosses"]:
+        for field in ("name", "tier", "loc"):
+            if not b.get(field):
+                raise DataError(f"boss {b.get('name') or '<missing>'}: missing {field}")
 
     if len(data["runewords"]) != RUNEWORD_COUNT:
         raise DataError(f"expected {RUNEWORD_COUNT} runewords, got {len(data['runewords'])}")
