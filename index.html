@@ -187,11 +187,26 @@
   .chip:disabled { opacity: .4; cursor: default; }
   .chip .soon { font-size: 10px; opacity: .6; }
   /* uniques tab */
-  .uq-icon { width: 28px; height: 28px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg2); flex: 0 0 auto; object-fit: cover; }
+  .uq-icon { width: 28px; height: 28px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg2); flex: 0 0 auto; object-fit: cover; cursor: pointer; }
   .uq-classes { margin-top: 10px; font-size: 12px; color: var(--dim); }
   .uq-acq { margin-top: 10px; font-size: 12px; color: var(--dim); background: var(--bg2); border-radius: 8px; padding: 8px 10px; }
   .uq-charms { margin-top: 16px; }
   .uq-charms p { font-size: 12px; color: var(--dim); }
+  /* unique icon tooltip (D4-style popup) */
+  .uq-tip {
+    position: fixed; z-index: 1000; max-width: 300px;
+    background: #0c0e13; border: 1px solid #6b5824; border-radius: 8px;
+    padding: 12px; box-shadow: 0 12px 28px rgba(0,0,0,.7);
+    font-size: 12px; line-height: 1.45; color: var(--text);
+  }
+  .uq-tip-head { display: flex; align-items: center; gap: 10px; }
+  .uq-tip-icon { width: 56px; height: 56px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg2); object-fit: cover; flex: 0 0 auto; }
+  .uq-tip-name { font: 700 15px/1.3 Georgia, "Times New Roman", serif; color: var(--gold); }
+  .uq-tip-sub { font-size: 11px; color: var(--dim); margin-top: 2px; }
+  .uq-tip-fx { margin-top: 8px; font-size: 13px; color: #8fa3e8; }
+  .uq-tip-aff { margin-top: 8px; }
+  .uq-tip-aff div { font-size: 12px; color: #9d937d; padding: 1px 0; }
+  .uq-tip-drop { margin-top: 8px; font-size: 11px; color: var(--dim); }
   #empty { text-align: center; color: var(--dim); padding: 48px 16px; display: none; }
   .howto { margin-top: 16px; }
   .howto summary {
@@ -237,6 +252,7 @@
   <div class="chips-row" id="slotrow"></div>
   <div class="chips-row" id="tagrow"></div>
   <div class="chips-row" id="uqslicerow" style="display:none"></div>
+  <div class="chips-row" id="uqslotrow" style="display:none"></div>
 </header>
 
 <main>
@@ -1666,7 +1682,7 @@ const SLOT_ORDER = { Chest:0, Helm:1, "1H":2, "2H":3, Ranged:4, Offhand:5 };
 
 const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
-const state = { q:"", slot:"All", tags:new Set(), sort:"az", craftable:false, tab:"rw", uqSlice:"All" };
+const state = { q:"", slot:"All", tags:new Set(), sort:"az", craftable:false, tab:"rw", uqSlice:"All", uqSlot:"All" };
 const $q = document.getElementById('q'), $list = document.getElementById('list'),
       $count = document.getElementById('count'), $empty = document.getElementById('empty'),
       $clear = document.getElementById('clearq');
@@ -1716,6 +1732,36 @@ UQ_SLICES.forEach(s => {
   };
   uqslicerow.appendChild(c);
 });
+
+// uniques slot-type chips — rebuilt per slice pool (All + categories present in that pool, with counts)
+const UQ_SLOT_CATS = [
+  ["1H",      s => s.startsWith("Main Hand") || s.startsWith("1H ")],
+  ["2H",      s => (s.startsWith("Two-Handed") && !s.startsWith("Two-Handed Ranged")) || s.startsWith("2H ")],
+  ["Ranged",  s => s.startsWith("Two-Handed Ranged")],
+  ["Offhand", s => s.startsWith("Off-Hand")],
+  ["Helm",    s => s.startsWith("Helm")],
+  ["Chest",   s => s.startsWith("Chest")],
+  ["Gloves",  s => s.startsWith("Gloves")],
+  ["Pants",   s => s.startsWith("Pants")],
+  ["Boots",   s => s.startsWith("Boots")],
+  ["Ring",    s => s.startsWith("Ring")],
+  ["Amulet",  s => s.startsWith("Amulet")]
+];
+const uqslotrow = document.getElementById('uqslotrow');
+function buildUqSlotRow(pool) {
+  const counts = UQ_SLOT_CATS
+    .map(([label, fn]) => [label, pool.filter(u => fn(u.slot)).length])
+    .filter(([, n]) => n > 0);
+  if (state.uqSlot !== 'All' && !counts.some(([label]) => label === state.uqSlot)) state.uqSlot = 'All';
+  const mk = (label, text) => {
+    const c = document.createElement('button');
+    c.className = 'chip uqslot' + (state.uqSlot === label ? ' on' : '');
+    c.textContent = text;
+    c.onclick = () => { if (state.uqSlot === label) return; state.uqSlot = label; renderUniques(); };
+    return c;
+  };
+  uqslotrow.replaceChildren(mk('All', 'All'), ...counts.map(([label, n]) => mk(label, label + ' (' + n + ')')));
+}
 
 // sort
 document.getElementById('sortseg').addEventListener('click', e => {
@@ -1801,6 +1847,7 @@ const $toolbar = document.getElementById('toolbar'), $sortseg = document.getElem
 
 function setTab(t) {
   state.tab = t;
+  closeUqTip();
   for (const [id, btn] of Object.entries(tabBtns)) {
     btn.classList.toggle('on', id === t);
     btn.setAttribute('aria-selected', String(id === t));
@@ -1811,6 +1858,7 @@ function setTab(t) {
   slotrow.style.display = rw ? '' : 'none';
   tagrow.style.display = rw ? '' : 'none';
   uqslicerow.style.display = uq ? '' : 'none';
+  uqslotrow.style.display = uq ? '' : 'none';
   $rwview.hidden = !rw;
   $runesview.hidden = t !== 'runes';
   $uniquesview.hidden = !uq;
@@ -1906,6 +1954,75 @@ function uqDropLine(u) {
   return '⤓ ' + esc(disputed ? u.drop.slice(0, -2) : u.drop) +
     (disputed ? ' <span class="warn" title="disputed drop source">⚠</span>' : '');
 }
+
+// --- unique icon tooltip (D4-style popup; single instance) ---
+const HOVER_OK = typeof matchMedia === 'function' && matchMedia('(hover: hover) and (pointer: fine)').matches;
+let uqTip = null, uqAnchor = null, uqOpenT = null, uqCloseT = null;
+function closeUqTip() {
+  clearTimeout(uqOpenT); clearTimeout(uqCloseT);
+  uqOpenT = uqCloseT = null;
+  if (uqTip) { uqTip.remove(); uqTip = null; }
+  uqAnchor = null;
+}
+function positionUqTip() {
+  if (!uqTip) return;
+  if (!uqAnchor || !uqAnchor.isConnected) return closeUqTip();
+  const r = uqAnchor.getBoundingClientRect(), pad = 8, gap = 8;
+  const w = uqTip.offsetWidth, h = uqTip.offsetHeight;
+  let x = Math.min(Math.max(r.left, pad), Math.max(pad, innerWidth - w - pad));
+  let y = r.bottom + gap;
+  if (y + h > innerHeight - pad) y = r.top - h - gap;                     // flip above
+  if (y + h > innerHeight - pad) y = Math.max(pad, innerHeight - h - pad); // taller than viewport: clamp
+  uqTip.style.left = Math.round(x) + 'px';
+  uqTip.style.top = Math.round(Math.max(pad, y)) + 'px';
+}
+function openUqTip(u, anchor) {
+  closeUqTip();
+  uqTip = document.createElement('div');
+  uqTip.className = 'uq-tip';
+  uqTip.innerHTML = `
+    <div class="uq-tip-head">
+      <img class="uq-tip-icon" src="${esc(u.img)}" alt="" width="56" height="56"
+           referrerpolicy="no-referrer" onerror="this.remove()">
+      <div>
+        <div class="uq-tip-name">${esc(u.name)}</div>
+        <div class="uq-tip-sub">${esc(u.slot)} · ${esc(u.classes || u.cls)}</div>
+      </div>
+    </div>
+    <div class="uq-tip-fx">${warnAware(u.effect)}</div>
+    ${u.affixes.length ? `<div class="uq-tip-aff">${u.affixes.map(a => `<div>${warnAware(a)}</div>`).join('')}</div>` : ''}
+    ${u.drop ? `<div class="uq-tip-drop">${uqDropLine(u)}</div>` : ''}`;
+  uqTip.addEventListener('mouseenter', () => clearTimeout(uqCloseT));
+  uqTip.addEventListener('mouseleave', closeUqTip);
+  document.body.appendChild(uqTip);
+  uqAnchor = anchor;
+  positionUqTip();
+}
+function wireUqTip(icon, u) {
+  icon.addEventListener('click', e => {
+    e.preventDefault(); e.stopPropagation(); // open tooltip, don't toggle the <details> card
+    if (uqAnchor === icon) closeUqTip(); else openUqTip(u, icon);
+  });
+  if (!HOVER_OK) return; // touch devices: tap-toggle only, no emulated hover timers
+  icon.addEventListener('mouseenter', () => {
+    clearTimeout(uqCloseT);
+    uqOpenT = setTimeout(() => openUqTip(u, icon), 250);
+  });
+  icon.addEventListener('mouseleave', () => {
+    clearTimeout(uqOpenT);
+    if (uqAnchor === icon)
+      uqCloseT = setTimeout(() => { if (uqAnchor === icon && !(uqTip && uqTip.matches(':hover'))) closeUqTip(); }, 150);
+  });
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && uqTip) closeUqTip(); });
+document.addEventListener('click', e => {
+  if (!uqTip) return;
+  const t = e.target;
+  if (uqTip.contains(t) || (t.closest && t.closest('.uq-icon'))) return;
+  closeUqTip();
+}, true);
+addEventListener('scroll', positionUqTip, { passive: true });
+addEventListener('resize', positionUqTip, { passive: true });
 function uqCard(u) {
   const d = document.createElement('details');
   d.className = 'rw';
@@ -1928,19 +2045,25 @@ function uqCard(u) {
       <ul class="fx">${u.affixes.map(fxLine).join('')}</ul>` : ''}
       <div class="uq-acq">${u.drop ? uqDropLine(u) : esc(uqFirstSentence(UQ_ACQ))}</div>
     </div>`;
+  const icon = d.querySelector('.uq-icon');
+  if (icon) wireUqTip(icon, u);
   return d;
 }
 function renderUniques() {
+  closeUqTip();
   const all = state.uqSlice === 'All';
   const pool = DATA.uniques.filter(u => all || u.cls === state.uqSlice);
+  buildUqSlotRow(pool);
+  const slotCats = new Map(UQ_SLOT_CATS);
+  const sel = state.uqSlot === 'All' ? pool : pool.filter(u => slotCats.get(state.uqSlot)(u.slot));
   const match = u => !state.q || uqHaystack(u).includes(state.q);
   // All → one level of cls groups (Legacy first, rest alphabetical);
   // a specific slice → cls is already communicated by the active chip, so armor/weapons groups stay useful, not redundant
   const groups = all
-    ? [...new Set(pool.map(u => u.cls))]
+    ? [...new Set(sel.map(u => u.cls))]
         .sort((a, b) => (a === 'Legacy' ? -1 : b === 'Legacy' ? 1 : a.localeCompare(b)))
-        .map(c => [c, pool.filter(u => u.cls === c)])
-    : UQ_GROUPS.map(([id, label]) => [label, pool.filter(u => uqGroup(u) === id)]);
+        .map(c => [c, sel.filter(u => u.cls === c)])
+    : UQ_GROUPS.map(([id, label]) => [label, sel.filter(u => uqGroup(u) === id)]);
   const parts = [];
   let shown = 0;
   for (const [label, items] of groups) {
@@ -1980,11 +2103,12 @@ function filtered() {
 }
 
 function baseSummary(rw) { return rw.bases.length > 3 ? rw.baseCount + ' base types' : rw.bases[0]; }
-function fxLine(e) {
+const warnAware = e => {
   const unconfirmed = e.endsWith('|?');
-  return '<li>' + esc(unconfirmed ? e.slice(0, -2) : e) +
-    (unconfirmed ? ' <span class="warn" title="unconfirmed — single-source or disputed">⚠</span>' : '') + '</li>';
-}
+  return esc(unconfirmed ? e.slice(0, -2) : e) +
+    (unconfirmed ? ' <span class="warn" title="unconfirmed — single-source or disputed">⚠</span>' : '');
+};
+function fxLine(e) { return '<li>' + warnAware(e) + '</li>'; }
 
 function card(rw) {
   const miss = missingFor(rw);
