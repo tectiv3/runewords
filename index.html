@@ -272,8 +272,7 @@
   </section>
 
   <section id="uniquesview" hidden>
-    <div class="runes-note" id="uqacq"></div>
-    <div class="runes-note" id="uqmythic" hidden></div>
+    <div class="runes-note" id="uqbanner" hidden></div>
     <div id="uqlist"></div>
     <div id="uqempty" hidden>No uniques match.</div>
     <div class="uq-charms" id="uqcharmsbox">
@@ -2494,8 +2493,7 @@ const $toolbar = document.getElementById('toolbar'), $sortseg = document.getElem
       $rwview = document.getElementById('rwview'), $runesview = document.getElementById('runesview'),
       $uniquesview = document.getElementById('uniquesview'), $uqlist = document.getElementById('uqlist'),
       $uqempty = document.getElementById('uqempty'),
-      $uqacq = document.getElementById('uqacq'), $uqcharmsbox = document.getElementById('uqcharmsbox'),
-      $uqmythic = document.getElementById('uqmythic'),
+      $uqbanner = document.getElementById('uqbanner'), $uqcharmsbox = document.getElementById('uqcharmsbox'),
       $runeslist = document.getElementById('runeslist'), $runesempty = document.getElementById('runesempty'),
       $invsummary = document.getElementById('invsummary');
 
@@ -2596,6 +2594,8 @@ document.getElementById('invreset').onclick = () => {
 
 // --- uniques tab ---
 const UQ_ACQ = DATA.uniquesnotes.acquisition;
+// per-slice acquisition banners: slice → uniquesnotes key; All and class slices show none
+const UQ_SLICE_NOTES = { Legacy: 'acquisition', Mythic: 'mythicAcq', Universal: 'universalAcq' };
 const UQ_GROUPS = [['armor', 'Jewelry & Armor'], ['weapon', 'Weapons']];
 // slot prefix decides the grouping: armor/jewelry slots vs all weapon slots (incl. off-hand focus)
 const uqGroup = u => /^(Ring|Helm|Chest|Gloves|Boots|Pants|Amulet)/.test(u.slot) ? 'armor' : 'weapon';
@@ -2732,10 +2732,10 @@ function renderUniques() {
   $uqlist.replaceChildren(...parts);
   $uqempty.hidden = shown > 0;
   $count.textContent = shown + ' / ' + pool.length + ' uniques';
-  // WN acquisition banner + charms footnote describe the Legacy slice only;
-  // mythic acquisition banner describes the Mythic slice — banners are exclusive by the single slice value
-  $uqacq.hidden = state.uqSlice !== 'Legacy';
-  $uqmythic.hidden = state.uqSlice !== 'Mythic';
+  // one acquisition banner per slice (map above); charms footnote stays Legacy-only
+  const noteKey = UQ_SLICE_NOTES[state.uqSlice];
+  $uqbanner.hidden = !noteKey;
+  if (noteKey) $uqbanner.textContent = DATA.uniquesnotes[noteKey];
   $uqcharmsbox.hidden = state.uqSlice !== 'Legacy';
 }
 
@@ -2830,9 +2830,7 @@ function render() {
   $empty.style.display = rows.length ? 'none' : 'block';
 }
 
-// uniques banner + charms footnote copy from data
-document.getElementById('uqacq').textContent = UQ_ACQ;
-document.getElementById('uqmythic').textContent = DATA.uniquesnotes.mythicAcq;
+// charms footnote copy from data (banner copy is set per-slice in renderUniques)
 document.getElementById('uqcharms').textContent = DATA.uniquesnotes.charms;
 
 // how-to + footer copy from data
