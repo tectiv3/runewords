@@ -273,6 +273,7 @@
 
   <section id="uniquesview" hidden>
     <div class="runes-note" id="uqacq"></div>
+    <div class="runes-note" id="uqmythic" hidden></div>
     <div id="uqlist"></div>
     <div id="uqempty" hidden>No uniques match.</div>
     <div class="uq-charms" id="uqcharmsbox">
@@ -2012,6 +2013,7 @@ const $toolbar = document.getElementById('toolbar'), $sortseg = document.getElem
       $uniquesview = document.getElementById('uniquesview'), $uqlist = document.getElementById('uqlist'),
       $uqempty = document.getElementById('uqempty'),
       $uqacq = document.getElementById('uqacq'), $uqcharmsbox = document.getElementById('uqcharmsbox'),
+      $uqmythic = document.getElementById('uqmythic'),
       $runeslist = document.getElementById('runeslist'), $runesempty = document.getElementById('runesempty'),
       $invsummary = document.getElementById('invsummary');
 
@@ -2248,8 +2250,10 @@ function renderUniques() {
   $uqlist.replaceChildren(...parts);
   $uqempty.hidden = shown > 0;
   $count.textContent = shown + ' / ' + pool.length + ' uniques';
-  // WN acquisition banner + charms footnote describe the Legacy slice only
+  // WN acquisition banner + charms footnote describe the Legacy slice only;
+  // mythic acquisition banner describes the Mythic slice — banners are exclusive by the single slice value
   $uqacq.hidden = state.uqSlice !== 'Legacy';
+  $uqmythic.hidden = state.uqSlice !== 'Mythic';
   $uqcharmsbox.hidden = state.uqSlice !== 'Legacy';
 }
 
@@ -2346,6 +2350,7 @@ function render() {
 
 // uniques banner + charms footnote copy from data
 document.getElementById('uqacq').textContent = UQ_ACQ;
+document.getElementById('uqmythic').textContent = DATA.uniquesnotes.mythicAcq;
 document.getElementById('uqcharms').textContent = DATA.uniquesnotes.charms;
 
 // how-to + footer copy from data
